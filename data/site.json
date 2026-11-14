@@ -1,0 +1,228 @@
+{
+ "settings": {
+  "siteName": "Wiki | Overline Roleplay",
+  "titleSuffix": " | Wiki | Overline",
+  "brand1": "OVER",
+  "brand2": "LINE",
+  "logo": "/uploads/logo.svg",
+  "favicon": "/uploads/logo.svg",
+  "discord": "https://discord.gg/6mSuErw7w",
+  "editedBy": "Équipe Overline",
+  "editedAt": "06/11/2026",
+  "autoDate": true,
+  "colors": {
+   "red": "#d0111b",
+   "redl": "#ff4b52",
+   "bg": "#161618",
+   "side": "#0f0f11",
+   "card": "#1d1d20",
+   "line": "#2b2b30",
+   "ink": "#e8e8ec",
+   "mut": "#8f8f9a"
+  },
+  "homePage": "accueil"
+ },
+ "nav": [
+  {
+   "type": "page",
+   "id": "accueil",
+   "label": "Accueil"
+  },
+  {
+   "type": "link",
+   "url": "{{discord}}",
+   "label": "Discord",
+   "icon": "💬"
+  },
+  {
+   "type": "sep"
+  },
+  {
+   "type": "page",
+   "id": "lore",
+   "label": "Lore du serveur"
+  },
+  {
+   "type": "page",
+   "id": "jouer",
+   "label": "Jouer sur Overline"
+  },
+  {
+   "type": "page",
+   "id": "lexique",
+   "label": "Lexique"
+  },
+  {
+   "type": "sep"
+  },
+  {
+   "type": "heading",
+   "text": "Règlement général"
+  },
+  {
+   "type": "page",
+   "id": "general",
+   "label": "Règlement général"
+  },
+  {
+   "type": "page",
+   "id": "sanctions",
+   "label": "Sanctions"
+  },
+  {
+   "type": "sep"
+  },
+  {
+   "type": "heading",
+   "text": "Règlement légal"
+  },
+  {
+   "type": "page",
+   "id": "legal-vie",
+   "label": "Vie légale & économie"
+  },
+  {
+   "type": "page",
+   "id": "legal-metiers",
+   "label": "Métiers & entreprises"
+  },
+  {
+   "type": "sep"
+  },
+  {
+   "type": "heading",
+   "text": "Règlement illégal"
+  },
+  {
+   "type": "page",
+   "id": "ill-vision",
+   "label": "Vision & bases du RP"
+  },
+  {
+   "type": "page",
+   "id": "ill-progression",
+   "label": "Progression & groupes"
+  },
+  {
+   "type": "page",
+   "id": "ill-territoires",
+   "label": "Territoires & immersion"
+  },
+  {
+   "type": "page",
+   "id": "ill-activites",
+   "label": "Braquages & activités"
+  },
+  {
+   "type": "page",
+   "id": "ill-conflits",
+   "label": "Conflits & forces de l’ordre"
+  }
+ ],
+ "pages": [
+  {
+   "id": "accueil",
+   "title": "Accueil",
+   "sub": "Overline · Serveur FiveM Roleplay Whitelist",
+   "tags": "accueil",
+   "icon": "🏠",
+   "html": "<img class=\"banner\" src=\"/uploads/banniere.png\" alt=\"Overline – Serveur Roleplay Whitelist\">\n<p>Bienvenue sur le wiki d’<b>Overline</b>, serveur FiveM Roleplay sur <span class=\"imp\">whitelist</span>. Tu trouveras ici tout ce qu’il faut pour candidater, jouer et connaître les règles du serveur.</p>\n<div class=\"big\">En rejoignant le serveur, tu acceptes l’intégralité des règlements. Nul n’est censé ignorer le règlement.</div>\n<div class=\"cards\">\n<a class=\"card\" href=\"#lore\"><b>📜 Lore du serveur</b><small>Le lycée Overline, la Ligne Rouge et ses mystères.</small></a>\n<a class=\"card\" href=\"#jouer\"><b>🎮 Jouer sur Overline</b><small>Whitelist, candidature, entretien, connexion.</small></a>\n<a class=\"card\" href=\"#general\"><b>❗ Règlement général</b><small>Respect, roleplay, Discord, triche.</small></a>\n<a class=\"card\" href=\"#legal-vie\"><b>⚖️ Règlement légal</b><small>Vie légale, économie, métiers, entreprises.</small></a>\n<a class=\"card\" href=\"#ill-vision\"><b>🔴 Règlement illégal</b><small>Progression, territoires, braquages, conflits.</small></a>\n</div>\n<p><a class=\"btn\" href=\"{{discord}}\" target=\"_blank\" rel=\"noopener\">Rejoindre le Discord</a></p>\n<h2>Les règles en bref</h2>\n<ol><li><span class=\"imp\">Le RP passe avant tout</span> : on joue une histoire, on ne farme pas.</li><li><span class=\"imp\">Fear RP et Pain RP obligatoires</span> : tu crains la mort, la prison et les blessures.</li><li>Pas de metagaming, de powergaming, de RDM ni de VDM.</li><li>Le Discord n’est pas du RP : aucune information HRP en jeu.</li><li>Les décisions du staff sont respectées, les contestations se font en ticket.</li><li><span class=\"imp\">Sauter des étapes dans la progression illégale = sanction.</span></li></ol>\n<h2>Par où commencer ?</h2>\n<p>Nouveau ? Va sur <a href=\"#jouer\">Jouer sur Overline</a>, lis ensuite le <a href=\"#general\">Règlement général</a>, puis le règlement légal ou illégal selon le personnage que tu veux incarner.</p>"
+  },
+  {
+   "id": "lore",
+   "title": "Lore du serveur",
+   "sub": "Lore du serveur Overline RP",
+   "tags": "lore,école,ligne rouge",
+   "icon": "📜",
+   "html": "<div class=\"big\">Tout le monde commence au même endroit : le lycée Overline. Personne ne sait vraiment pourquoi.</div>\n<p>Sur Overline, ton personnage ne naît pas adulte, avec un passé tout fait. Il <span class=\"imp\">entre au lycée</span>. C’est là qu’il se construit : amitiés, rivalités, secrets, mauvaises décisions. Ce que tu y vis devient ton histoire.</p>\n<h2>Le lycée Overline</h2>\n<p>Bâti dans les années 60 au-dessus d’un ancien dépôt ferroviaire, le lycée Overline était à l’origine un internat réservé aux enfants de familles influentes. Les familles ont disparu des registres, l’école est restée. Les couloirs sont trop longs pour les plans qu’on en a, les horloges ne sont jamais d’accord entre elles, et on y entend parfois des cours dans des salles vides.</p>\n<p>Aujourd’hui, le lycée accueille n’importe qui. Les élèves arrivent de partout, souvent sans avoir choisi d’être là. Aucun n’a de dossier de candidature : <b>on reçoit simplement une convocation</b>.</p>\n<h2>La Ligne Rouge</h2>\n<p>Une ligne rouge est peinte au sol. Elle part de la grille d’entrée, traverse la cour, longe les couloirs, passe sous des portes closes et finit au pied du gymnase. <span class=\"imp\">Personne ne se souvient de qui l’a tracée.</span> Chaque matin, elle est fraîche, comme repeinte pendant la nuit.</p>\n<h3>Ce qu’on raconte</h3>\n<ul><li>Ceux qui la franchissent en connaissance de cause « changent de côté » et ne sont plus tout à fait les mêmes.</li><li>Ceux qui la traversent à minuit voient la version d’eux-mêmes qui a mal tourné.</li><li>La ligne n’existe sur aucun plan, mais le concierge la repeint avant tout le monde.</li></ul>\n<div class=\"box\"><b>La règle non écrite du lycée :</b> « On ne franchit pas la ligne sans raison. » Franchir la ligne a toujours un prix.</div>\n<h2>Le personnel</h2>\n<h3>Mme Corvin, la directrice</h3>\n<p>Calme, élégante, jamais surprise. Elle connaît le prénom de chaque élève avant qu’il ne se présente. Elle répond toujours qu’« il n’y a pas de ligne rouge dans cet établissement ».</p>\n<h3>M. Lazare, professeur d’histoire</h3>\n<p>Il sait des choses sur les élèves que personne ne lui a dites. Ses cours dérivent toujours vers l’histoire du lycée, qui n’est écrite nulle part.</p>\n<h3>Mme Sorel, professeure de chimie</h3>\n<p>Son laboratoire sent la fumée, même quand rien ne brûle. Elle donne des notes que personne ne comprend, et elles se révèlent toujours justes.</p>\n<h3>Coach Dalton, professeur de sport</h3>\n<p>Il ne dort jamais. On le voit à toute heure dans le gymnase, à regarder la fin de la ligne rouge.</p>\n<h3>M. Grimm, le concierge</h3>\n<p>Il répare toujours le même mur, au deuxième étage. Il refuse d’expliquer ce qu’il y a derrière.</p>\n<h3>Mlle Vesper, l’infirmière</h3>\n<p>Elle note ce que rêvent les élèves. Quand elle s’inquiète de ton rêve, c’est que tu es déjà dedans.</p>\n<h2>Les légendes du lycée</h2>\n<ul><li><b>La salle 13 :</b> elle est sur les portes, pas sur les plans. Certains disent y avoir suivi un cours à minuit.</li><li><b>La cloche de 23h47 :</b> elle sonne une fois, quelle que soit la nuit, alors que la cloche a été retirée il y a trente ans.</li><li><b>Les casiers de 1987 :</b> certains casiers contiennent des affaires d’élèves de cette année-là, toujours à jour.</li><li><b>La photo de promotion :</b> sur celle de 1987, il y a un élève de trop. Personne ne sait qui.</li></ul>\n<h2>Les pistes d’histoire</h2>\n<p>Ces pistes se découvrent <span class=\"imp\">en RP uniquement</span>. Elles ne sont jamais expliquées sur le wiki : c’est à vous de chercher, de rumeur en rumeur.</p>\n<ol><li><b>Le casier 217 :</b> un casier s’ouvre seul et contient un objet qui t’appartient, mais que tu n’as jamais possédé.</li><li><b>La cloche de 23h47 :</b> quelques élèves veulent comprendre pourquoi elle sonne encore.</li><li><b>Les secrets du personnel :</b> chaque professeur détient un élément de l’histoire. Il faut gagner leur confiance, ou la forcer.</li><li><b>La salle 13 :</b> on dit qu’on n’y entre qu’en ayant franchi la ligne.</li><li><b>Le Dernier Jour :</b> la cérémonie de fin d’année, où chacun doit choisir de quel côté de la ligne il termine.</li></ol>\n<h2>L’année scolaire</h2>\n<h3>La rentrée</h3><p>Convocations, découverte du lycée, premières rencontres. On forme des groupes d’amis, on repère les premiers conflits.</p>\n<h3>Les premières tensions</h3><p>Cliques, rivalités, rumeurs. Certains élèves se rapprochent de la ligne, d’autres la fuient.</p>\n<h3>Les nuits</h3><p>Le lycée change après la dernière cloche. C’est là que le surnaturel s’invite, par touches, jamais de façon évidente.</p>\n<h3>Les examens</h3><p>Pression, triche, secrets. Chacun doit décider ce qu’il est prêt à faire pour réussir.</p>\n<h3>Le Dernier Jour</h3><p>La cérémonie. Chaque élève sort du lycée avec un diplôme, et une décision.</p>\n<h2>Après le lycée : de quel côté de la ligne ?</h2>\n<p>La Ligne Rouge ne s’arrête pas aux portes de l’école : elle continue dans la ville.</p>\n<div class=\"cards\">\n<a class=\"card\" href=\"#legal-vie\"><b>⚖️ Rester du bon côté</b><small>Métiers, entreprises, services publics. Voir le règlement légal.</small></a>\n<a class=\"card\" href=\"#ill-vision\"><b>🔴 Franchir la ligne</b><small>Petite frappe, groupe, territoire. Voir le règlement illégal.</small></a>\n</div>\n<h2>Règles du lore</h2>\n<ul><li>Le lore est une <b>base</b> : l’histoire se construit en RP, par vous.</li><li>Le surnaturel reste des <span class=\"imp\">rumeurs et des indices</span> : rien n’est jamais prouvé ni expliqué.</li><li>Aucune invention majeure (personnage, lieu, événement) sans validation du staff.</li><li>Le staff et les GM font vivre l’histoire : suivez les pistes en RP, pas sur le Discord.</li></ul>\n<div class=\"big\">Les mystères ne sont jamais expliqués. C’est à vous de les vivre.</div>"
+  },
+  {
+   "id": "jouer",
+   "title": "Jouer sur Overline",
+   "sub": "Comment rejoindre le serveur",
+   "tags": "whitelist,candidature",
+   "icon": "🎮",
+   "html": "<p>Overline est un serveur <span class=\"imp\">sur whitelist</span> : l’accès se fait uniquement après validation de ta candidature par l’équipe WL.</p>\n<h2>Les étapes</h2>\n<ol><li>Rejoins le <a href=\"{{discord}}\" target=\"_blank\" rel=\"noopener\">Discord</a> du serveur.</li><li>Lis l’intégralité des règlements de ce wiki.</li><li>Dépose ta candidature whitelist.</li><li>Passe l’entretien si l’équipe WL te le demande.</li><li>Une fois validé, tu reçois ton rôle et les informations de connexion sur le Discord.</li></ol>\n<h2>Candidature</h2>\n<p>Réponds de façon <b>sincère, complète et soignée</b>. Une bonne candidature présente :</p>\n<ul><li>Toi : âge, expérience en roleplay, disponibilités</li><li>Ton personnage : identité, histoire, caractère, objectifs</li><li>Tes motivations pour rejoindre Overline</li><li>Ta compréhension des règles (Fear RP, Pain RP, metagaming…)</li></ul>\n<p class=\"imp\">Toute fausse information entraîne un refus ou un bannissement.</p>\n<h2>Entretien</h2>\n<p>Un entretien peut être demandé pour évaluer ta connaissance du roleplay et du règlement. Sois honnête, respectueux et à l’heure. Un micro de qualité correcte est requis.</p>\n<h2>Refus et nouvelle tentative</h2>\n<p>En cas de refus, un délai s’applique avant de pouvoir candidater à nouveau. <span class=\"imp\">Harceler le staff pour obtenir une validation entraîne un refus définitif.</span></p>\n<h2>Retrait de la whitelist</h2>\n<p>La whitelist peut être retirée en cas de manquements graves ou répétés au règlement, sans préavis.</p>\n<h2>Conditions d’accès</h2>\n<ul><li>Être membre du Discord du serveur</li><li>Avoir lu et accepté tous les règlements</li><li>Un seul compte par personne</li><li>Un micro de qualité correcte</li><li>Un personnage cohérent, avec une histoire</li></ul>\n<h2>Règles pendant la whitelist</h2>\n<ul class=\"ban\"><li>Copier la candidature d’un autre joueur</li><li>Mentir sur son âge, son expérience ou son identité</li><li>Relancer le staff en message privé</li><li>Créer plusieurs candidatures en parallèle</li></ul>\n<h2>Conseils pour réussir</h2>\n<ul><li>Écris une histoire personnelle, pas une liste de clichés.</li><li>Donne à ton personnage des défauts, des peurs et des objectifs.</li><li>Montre que tu comprends le Fear RP, le Pain RP et le metagaming.</li><li>Relis-toi : une candidature soignée est une candidature prise au sérieux.</li></ul>\n<h2>Une fois validé</h2>\n<p>Tu reçois ton rôle sur le Discord et les informations de connexion. <span class=\"imp\">Ta whitelist est personnelle et ne se partage pas.</span></p>"
+  },
+  {
+   "id": "lexique",
+   "title": "Lexique",
+   "sub": "Les termes à connaître",
+   "tags": "lexique,roleplay",
+   "icon": "📖",
+   "html": "<dl>\n<dt>RP / HRP</dt><dd>RP : ce qui se passe dans le jeu, par le personnage. HRP (« hors roleplay ») : ce qui concerne le joueur réel.</dd>\n<dt>WL</dt><dd>Whitelist : liste des joueurs validés pour accéder au serveur.</dd>\n<dt>GM</dt><dd>Game Master : membre du staff qui encadre le RP et peut intervenir en jeu.</dd>\n<dt>Fear RP</dt><dd>Craindre pour sa vie, la prison et les blessures, comme dans la réalité.</dd>\n<dt>Pain RP</dt><dd>Jouer ses blessures de façon réaliste (boiter, ralentir, appeler à l’aide).</dd>\n<dt>Metagaming</dt><dd>Utiliser en jeu une information obtenue hors RP (Discord, stream, vocal…).</dd>\n<dt>Powergaming</dt><dd>Forcer une action sans laisser de réaction possible, ou faire l’impossible.</dd>\n<dt>RDM</dt><dd>Random Death Match : tuer sans raison RP valable.</dd>\n<dt>VDM</dt><dd>Vehicle Death Match : renverser un joueur sans raison RP valable.</dd>\n<dt>Amnésie RP</dt><dd>Oubli des circonstances d’une mort ou d’une perte de connaissance.</dd>\n<dt>CK</dt><dd>Character Kill : mort définitive d’un personnage, validée par le staff.</dd>\n<dt>Stream sniping</dt><dd>Regarder le stream d’un joueur pour obtenir un avantage en jeu.</dd>\n<dt>Combat log</dt><dd>Se déconnecter pour fuir une scène RP en cours.</dd>\n<dt>Cop baiting</dt><dd>Provoquer volontairement les forces de l’ordre sans raison RP.</dd>\n<dt>Safe zone</dt><dd>Zone protégée où aucune action agressive n’est autorisée.</dd>\n<dt>Petite frappe / Groupe officiel</dt><dd>Les deux niveaux de la progression illégale (voir Progression &amp; groupes).</dd>\n</dl>\n<h2>Autres termes</h2>\n<dl>\n<dt>FailRP</dt><dd>Action totalement incohérente avec la réalité ou avec son personnage (ignorer le danger, comportement absurde…).</dd>\n<dt>NLR (New Life Rule)</dt><dd>Après une mort, le personnage repart de zéro : il oublie la scène et ne peut pas se venger.</dd>\n<dt>PK / CK</dt><dd>Player Kill (mort RP temporaire) et Character Kill (mort définitive du personnage).</dd>\n<dt>Mixing</dt><dd>Mélanger le HRP et le RP (ex. parler du Discord en jeu).</dd>\n<dt>Troll RP</dt><dd>Jouer pour embêter les autres plutôt que pour construire une scène.</dd>\n<dt>Bug abuse</dt><dd>Exploiter volontairement un bug du jeu ou du serveur.</dd>\n<dt>Ticket</dt><dd>Demande ouverte sur le Discord (aide, bug, plainte, recrutement, contestation).</dd>\n<dt>Groupe officiel</dt><dd>Groupe criminel validé par le staff et les GM.</dd>\n<dt>Prise d’otage</dt><dd>Menacer une personne pour obtenir quelque chose, jouée avec Fear RP.</dd>\n</dl>"
+  },
+  {
+   "id": "general",
+   "title": "Règlement général",
+   "sub": "Les règles qui s’appliquent à tous",
+   "tags": "règlement,général",
+   "icon": "❗",
+   "html": "<div class=\"box\"><span class=\"imp\">Serveur sur whitelist.</span> En rejoignant Overline, tu acceptes l’intégralité du règlement. <span class=\"imp\">Nul n’est censé ignorer le règlement.</span></div>\n<h2>01 · Respect et comportement</h2>\n<p>Le respect est obligatoire envers tous les joueurs et le staff, en jeu comme sur Discord.</p>\n<ul class=\"ban\"><li>Insultes, harcèlement, menaces</li><li>Discrimination (racisme, sexisme, homophobie…)</li><li>Provocations et toxicité HRP</li><li>Contenus choquants ou haineux</li></ul>\n<h2>02 · Compte, âge et micro</h2>\n<h3>Un joueur = un compte</h3>\n<p><span class=\"imp\">Le partage de compte, le multi-compte et le contournement d’un bannissement sont interdits et sanctionnés d’un bannissement définitif.</span></p>\n<h3>Âge et micro</h3>\n<p>Un micro de qualité correcte est requis. Un âge minimum peut être demandé lors de la whitelist.</p>\n<h2>03 · Triche et bugs</h2>\n<p>Les mods menus, injecteurs, cheats et l’exploitation volontaire de bugs sont <span class=\"imp\">strictement interdits</span>. Tout bug découvert doit être signalé au staff via un ticket, sans en profiter.</p>\n<h2>04 · Bases du roleplay</h2>\n<p class=\"imp\">Le roleplay prime sur tout.</p>\n<h3>Fair-play RP</h3><p>Rends les scènes agréables pour les autres et joue ton personnage de manière réaliste et cohérente.</p>\n<h3>Fear RP</h3><p>Tu dois craindre pour ta vie lorsqu’une arme est pointée sur toi ou que tu es en danger.</p>\n<h3>Pain RP</h3><p>Tu dois jouer tes blessures de façon réaliste.</p>\n<h3>Metagaming</h3><p>Utiliser en jeu une information obtenue hors RP (Discord, live, vocal, ami) est interdit.</p>\n<h3>Powergaming</h3><p>Forcer une action sans laisser de réaction à l’autre joueur, ou réaliser des actions impossibles, est interdit.</p>\n<h3>RDM / VDM</h3><p><span class=\"imp\">Tuer, frapper ou renverser un joueur sans raison RP valable est strictement interdit.</span></p>\n<h3>Amnésie RP</h3><p>Après une réanimation ou un passage à l’hôpital, ton personnage oublie les circonstances de sa mort ou de son inconscience. Il ne peut ni se venger ni retourner sur les lieux de la scène.</p>\n<h3>Combat log</h3><p>Se déconnecter pour échapper à une scène RP en cours est interdit.</p>\n<h3>Safe zones</h3><p>Aucune action agressive n’est autorisée dans les zones protégées (hôpital, commissariat, administration…).</p>\n<h3>Langage HRP</h3><p>Le langage HRP en jeu est interdit. En cas de nécessité, utilise le chat HRP avec parcimonie.</p>\n<h3>Nom et identité</h3><p>Les noms de personnages doivent être réalistes. Les noms de célébrités, de personnages fictifs ou humoristiques sont interdits.</p>\n<h2>05 · Discord et communication</h2>\n<h3>Comportement</h3><p>Pas de spam, pub, liens douteux ni mention abusive du staff. Chaque salon doit être utilisé pour son usage.</p>\n<h3>Tickets</h3><p>Pour toute demande (aide, bug, plainte, recrutement…), ouvre un ticket. Les demandes en message privé au staff ne sont pas traitées.</p>\n<h3>Streams et vidéos</h3><p>Les streamers sont responsables de ce qu’ils diffusent. Le stream sniping est interdit.</p>\n<h3>Le Discord n’est pas du RP</h3><p class=\"imp\">Toute influence HRP sur le RP est interdite.</p>\n<h2>06 · Staff et décisions</h2>\n<p>Les décisions du staff doivent être respectées en jeu. Toute contestation se fait calmement, en ticket, jamais en public ni en pleine scène. <span class=\"imp\">Le staff et les GM peuvent sanctionner même si une situation n’est pas écrite dans le règlement.</span></p>\n<h2>07 · Conduite en jeu</h2>\n<ul><li>Chaque action a des conséquences RP : joue-les.</li><li>Laisse chaque joueur finir sa scène avant d’en commencer une autre.</li><li>Pas de soundboard, de musique ni de bruits parasites en vocal.</li><li>Pas de troll RP, de FailRP ni de bug abuse.</li><li>Les sujets sensibles réels (attentats, politique, religion polémique) sont interdits en RP.</li></ul>\n<h2>08 · Absences et déconnexions</h2>\n<p>Une déconnexion involontaire doit être signalée au staff. <span class=\"imp\">Se déconnecter volontairement pendant une scène est un combat log et se sanctionne.</span></p>\n<h2>09 · Streamers et contenu</h2>\n<p>Les streamers restent responsables de ce qu’ils diffusent. Tout contenu doit respecter le règlement et ne pas révéler d’informations RP en direct à d’autres joueurs.</p>\n<h2>10 · Cas non prévus</h2>\n<p>Un doute sur une règle ? Ouvre un ticket avant d’agir. <span class=\"imp\">Le staff et les GM peuvent trancher sur toute situation, même non écrite.</span></p>"
+  },
+  {
+   "id": "sanctions",
+   "title": "Sanctions",
+   "sub": "Échelle des sanctions et contestation",
+   "tags": "sanctions,règlement",
+   "icon": "🔨",
+   "html": "<h2>Échelle des sanctions</h2>\n<p>Selon la gravité et la récidive :</p>\n<ol><li>Avertissement</li><li>Mute</li><li>Kick</li><li>Ban temporaire</li><li>Retrait de la whitelist</li><li>Ban définitif</li></ol>\n<p>Le staff reste libre d’adapter la sanction à la situation. Les infractions graves (triche, multi-compte, harcèlement, discrimination) peuvent mener directement au ban.</p>\n<h2>Contester une sanction</h2>\n<p>Ouvre un ticket sur le Discord avec tes arguments et, si possible, des preuves (clips, captures). Une décision de ban définitif ne peut être contestée qu’une seule fois.</p>\n<div class=\"big\">Débattre d’une sanction en public est interdit.</div>\n<h2>Évolution du règlement</h2>\n<p>Le règlement peut évoluer à tout moment. Les mises à jour sont annoncées sur le Discord et s’appliquent immédiatement.</p>\n<h2>Barème indicatif</h2>\n<ul><li><b>Insultes, toxicité :</b> mute, puis kick, puis ban selon la gravité.</li><li><b>RDM / VDM :</b> avertissement, kick puis ban temporaire en cas de récidive.</li><li><b>Metagaming / powergaming / FailRP :</b> avertissement puis kick.</li><li><b>Non-respect du Fear RP / Pain RP :</b> avertissement puis sanction RP.</li><li><b>Combat log, stream sniping :</b> ban temporaire.</li><li><span class=\"imp\">Triche, multi-compte, harcèlement, discrimination : ban définitif possible dès la première infraction.</span></li></ul>\n<p>Ce barème est indicatif : le staff peut l’adapter à chaque situation.</p>\n<h2>Circonstances</h2>\n<ul><li><b>Aggravantes :</b> récidive, mauvaise foi, provocation, plusieurs victimes, impact sur le serveur.</li><li><b>Atténuantes :</b> bonne foi, coopération, reconnaissance de l’erreur.</li></ul>\n<h2>Preuves</h2>\n<p>Les clips et captures d’écran font foi. Une sanction peut aussi s’appuyer sur les logs du serveur et le témoignage du staff.</p>"
+  },
+  {
+   "id": "legal-vie",
+   "title": "Vie légale & économie",
+   "sub": "Règlement légal",
+   "tags": "légal,économie",
+   "icon": "⚖️",
+   "html": "<h2>01 · Principe du serveur légal</h2>\n<p>Overline Légal est dédié aux activités légales : métiers, services publics, entreprises et commerce. <span class=\"imp\">Les activités criminelles (braquages, trafics, gangs…) relèvent du règlement illégal.</span></p>\n<h2>02 · Respect de la loi RP</h2>\n<ul><li>Ton personnage respecte le code de la route et la loi en vigueur.</li><li>Les forces de l’ordre sont là pour la faire appliquer : coopère avec elles.</li><li>En cas de contrôle, reste calme, présente tes papiers et joue la situation.</li><li>Fuir sans raison RP valable est interdit pour un personnage légal.</li></ul>\n<h2>03 · Économie</h2>\n<p class=\"imp\">Revendre de l’argent ou des objets du serveur contre de l’argent réel est interdit.</p>\n<ul><li>Les échanges restent cohérents avec l’économie RP.</li><li>Pas de prix abusifs ou de manipulation du marché.</li><li>Pas de transfert d’argent entre comptes pour contourner une règle.</li></ul>\n<h2>04 · Véhicules et biens</h2>\n<p>Le véhicule et les biens de ton personnage doivent rester cohérents avec son métier et son niveau de vie.</p>\n<ul class=\"ban\"><li>Véhicules volés sans RP</li><li>Spawn kill</li><li>Conduite dangereuse sans raison</li><li>Abandon de véhicule sur la voie publique</li></ul>\n<h2>05 · Logements et propriétés</h2>\n<p>Un logement ou un local est une propriété privée : on n’y entre pas sans accord RP ou autorisation légale.</p>\n<h2>06 · Interactions avec le milieu illégal</h2>\n<p>Un personnage légal peut croiser des criminels, mais ne doit pas profiter d’informations HRP. En cas de braquage ou d’agression, applique le Fear RP et ne te venge pas (amnésie RP).</p>\n<h2>07 · Code de la route RP</h2>\n<ul><li>Respecte les limitations de vitesse, les feux et les priorités.</li><li>Pas de conduite dangereuse sans raison RP.</li><li>Les VDM et les accidents volontaires sont interdits.</li><li>Après un accident, joue la scène (constat, appel aux secours).</li></ul>\n<h2>08 · Santé et EMS</h2>\n<ul><li>Si tu es blessé, appelle les secours et attends-les.</li><li>Interdit de te faire soigner par un ami en jouant comme s’il n’y avait pas de blessure.</li><li>Respecte les EMS : ils ne sont ni des cibles ni des taxis.</li></ul>\n<h2>09 · Armes en zone légale</h2>\n<p>Le port d’arme visible est interdit en zone légale. <span class=\"imp\">Une arme sortie sans raison RP est sanctionnée.</span></p>\n<h2>10 · Amendes et dettes</h2>\n<p>Une amende RP se paie en RP. La contester se fait en RP avec le service concerné, puis par ticket si le problème persiste.</p>\n<h2>11 · Téléphone et communications</h2>\n<p>Les appels et messages en jeu se jouent en RP. Utiliser un vocal Discord pour s’organiser en pleine scène est du metagaming.</p>"
+  },
+  {
+   "id": "legal-metiers",
+   "title": "Métiers & entreprises",
+   "sub": "Règlement légal",
+   "tags": "légal,métiers,entreprises",
+   "icon": "💼",
+   "html": "<h2>01 · Demande de rôle</h2>\n<p>Les rôles métiers s’obtiennent via le salon <b>Demande-de-Role</b> du Discord. Toute fausse demande est refusée et peut être sanctionnée.</p>\n<h2>02 · Services publics</h2>\n<h3>Police, EMS, Pompiers…</h3>\n<p>Les forces de l’ordre et les services de secours se doivent d’être exemplaires. <span class=\"imp\">Abus de pouvoir, favoritisme et manque de professionnalisme sont lourdement sanctionnés.</span> Le recrutement est géré par les responsables de service.</p>\n<ul><li>Respecte la hiérarchie et les procédures de ton service.</li><li>Pas d’arrestation ni de soin sans raison RP.</li><li>Corruption et fuites d’informations HRP interdites.</li><li>L’uniforme et le matériel de service restent en service.</li></ul>\n<h2>03 · Entreprises et commerces</h2>\n<p>Chaque patron est responsable de son entreprise et de ses employés. Il doit respecter la charte du serveur et rendre des comptes au staff en cas de problème.</p>\n<ul><li>Recrutement et licenciement justifiés en RP</li><li>Salaires et prix cohérents avec l’économie</li><li>Pas d’abus de pouvoir envers les employés</li></ul>\n<h2>04 · Employés</h2>\n<p>Un employé respecte son patron et son entreprise. Voler son employeur relève du règlement illégal et doit être joué avec ses conséquences.</p>\n<h2>05 · Inactivité</h2>\n<p>Un poste inactif sans prévenir peut être retiré. Pense à signaler tes absences à ton responsable.</p>\n<h2>06 · Démission et licenciement</h2>\n<p>La démission et le licenciement se jouent en RP puis se signalent au staff pour retirer le rôle.</p>\n<h2>07 · Règles de service</h2>\n<ul><li>Prends et quitte ton service en RP et en respectant la procédure.</li><li>L’uniforme et le matériel de service restent dans le cadre du service.</li><li>Pas de double casquette abusive entre un métier et une activité illégale.</li></ul>\n<h2>08 · Hiérarchie et grades</h2>\n<p>Chaque service a sa hiérarchie. Les ordres se respectent, les désaccords se règlent hors scène, en privé, avec les responsables.</p>\n<h2>09 · Formation et recrutement</h2>\n<p>Le recrutement passe par les responsables de service et la demande de rôle. Une formation peut être exigée avant d’obtenir un grade.</p>\n<h2>10 · Gestion d’une entreprise</h2>\n<ul><li>Tarifs cohérents avec l’économie du serveur.</li><li>Comptabilité et stock tenus honnêtement.</li><li>Fermeture ou changement de patron signalés au staff.</li></ul>\n<h2>11 · Relations entre services</h2>\n<p>Police, EMS et entreprises coopèrent en RP. <span class=\"imp\">Les rivalités HRP entre services sont interdites.</span></p>"
+  },
+  {
+   "id": "ill-vision",
+   "title": "Vision & bases du RP",
+   "sub": "Règlement illégal",
+   "tags": "illégal,roleplay",
+   "icon": "🧠",
+   "html": "<h2>🧠 1. Vision du serveur</h2>\n<p class=\"imp\">👉 Le RP passe avant tout.</p>\n<div class=\"big\">Vous n’êtes pas là pour :<ul><li>Gagner</li><li>Farmer</li><li>Optimiser</li></ul></div>\n<p>Vous êtes là pour :</p>\n<ul><li>Construire une histoire</li><li>Créer des interactions</li><li>Proposer un RP immersif et réaliste</li></ul>\n<p>💡 <span class=\"imp\">Chaque action doit avoir du sens, des conséquences et un impact RP.</span></p>\n<div class=\"box\"><b>⚠️ IMPORTANT :</b> les GM et le staff peuvent intervenir et sanctionner à tout moment, même si la situation n’est pas explicitement écrite dans ce règlement, si :<ul><li>L’immersion est cassée</li><li>Le RP est abusif</li><li>L’équilibre du serveur est menacé</li></ul><p class=\"imp\">👉 Leur décision est finale et incontestable.</p></div>\n<h2>🖥️ 2. Discord illégal</h2>\n<p>Le Discord est un outil organisationnel, <span class=\"imp\">pas un terrain de jeu</span>.</p>\n<h3>⛔ Interdictions</h3>\n<ul class=\"ban\"><li>Ping staff sans raison valable</li><li>Toxicité / provocation</li><li>Spam / flood</li><li>Publicité externe</li><li>Multi-comptes</li><li>Utilisation des mauvais salons</li><li>Débat public sur décisions staff</li></ul>\n<h3>⚠️ Règles avancées</h3>\n<ul><li><span class=\"imp\">Le Discord ≠ RP</span></li><li><span class=\"imp\">Toute influence HRP sur le RP est interdite</span></li></ul>\n<div class=\"box\">📌 Exemple :<ul class=\"no\"><li>“On vous attaque ce soir”</li></ul><ul class=\"ok\"><li>Organiser une embuscade uniquement en RP</li></ul></div>\n<h2>🎭 3. Bases du roleplay</h2>\n<h3>🔹 Fear RP <span class=\"tag\">OBLIGATOIRE</span></h3>\n<p>Vous devez craindre : la mort, la prison, les blessures.</p>\n<div class=\"box\">📌 Exemple :<ul class=\"no\"><li>Provoquer avec une arme sur la tête</li></ul><ul class=\"ok\"><li>Coopérer / négocier / hésiter</li></ul></div>\n<h3>🔹 Pain RP <span class=\"tag\">OBLIGATOIRE</span></h3>\n<p>Vous devez jouer vos blessures.</p>\n<div class=\"box\">📌 Exemple :<ul class=\"no\"><li>Courir après avoir pris des balles</li></ul><ul class=\"ok\"><li>Boiter / ralentir / appeler à l’aide</li></ul></div>\n<h3>🔹 Cohérence RP</h3>\n<p>Chaque action doit être logique.</p>\n<div class=\"box\">📌 Exemple :<ul class=\"no\"><li>Braquage sans raison</li></ul><ul class=\"ok\"><li>Braquage lié à un conflit / dette</li></ul></div>\n<div class=\"big\">⚠️ Tout manquement = sanction immédiate possible par GM</div>\n<h3>🔹 Amnésie après une scène</h3>\n<p>Après une mort ou une perte de connaissance, ton personnage oublie la scène. <span class=\"imp\">Aucune vengeance immédiate, aucun retour sur les lieux.</span></p>\n<h2>Les règles d’or</h2>\n<ol><li><span class=\"imp\">Aucune action sans raison RP.</span></li><li>Toujours jouer la peur et la douleur.</li><li>Ne jamais utiliser le Discord pour influencer le jeu.</li><li>Accepter les conséquences : arrestation, blessure, perte.</li><li>Laisser les autres joueurs exister dans la scène.</li></ol>\n<h2>Rôle des GM</h2>\n<p>Les GM encadrent le RP illégal : ils peuvent stopper une scène, la corriger, demander des explications ou sanctionner. <span class=\"imp\">Leurs décisions en scène s’appliquent immédiatement.</span></p>\n<h2>Ce qu’on attend d’un criminel RP</h2>\n<ul><li>Un personnage crédible, avec un passé et des motivations.</li><li>Du respect pour les victimes : on menace, on ne détruit pas leur RP.</li><li>De la discrétion : on ne s’affiche pas comme dans un film.</li><li>Une vraie prise de risque, pas une invincibilité.</li></ul>"
+  },
+  {
+   "id": "ill-progression",
+   "title": "Progression & groupes",
+   "sub": "Règlement illégal",
+   "tags": "illégal,progression,groupes",
+   "icon": "📈",
+   "html": "<h2>🧱 4. Progression illégale</h2>\n<h3>🥊 Petite frappe</h3>\n<ul><li>4 joueurs max</li><li>Pas de territoire</li><li>RP de rue</li></ul>\n<p>Activités limitées : petits délits, RP de rue, premières relations dans le milieu. On construit sa réputation en RP.</p>\n<h3>🏴 Groupe officiel</h3>\n<ul><li>Validation staff + GM</li><li>Accès contenu avancé</li><li>Surveillance accrue</li></ul>\n<h3>📈 Évolution logique</h3>\n<p>Petite criminalité → Conflits → Réputation → Dossier → Validation</p>\n<div class=\"big\">⛔ Sauter des étapes = sanction</div>\n<h2>Dossier de groupe</h2>\n<p>Pour devenir groupe officiel, dépose un dossier via ticket contenant :</p>\n<ul><li>Nom, couleurs et identité du groupe</li><li>Histoire et origine RP</li><li>Liste et rôles des membres, hiérarchie</li><li>Objectifs et activités prévues</li><li>Preuves de la progression RP (scènes, clips)</li></ul>\n<h2>Vie du groupe</h2>\n<ul><li>Le recrutement se fait en RP uniquement.</li><li>Les effectifs maximum sont fixés par le staff à la validation.</li><li>Un groupe inactif peut être dissous et perdre ses avantages.</li><li>Un membre ne peut appartenir qu’à un seul groupe.</li><li>Un groupe qui enchaîne les abus peut être sanctionné collectivement.</li></ul>\n<h2>Surveillance et sanctions</h2>\n<p>Un groupe officiel est surveillé de près par le staff. <span class=\"imp\">Le non-respect du règlement peut entraîner le retrait des avantages, du territoire ou la dissolution.</span></p>\n<h2>Les étapes en détail</h2>\n<ol><li>Tu débutes comme <b>petite frappe</b> : petits délits, RP de rue.</li><li>Tu te crées de la <b>réputation</b> par des scènes RP.</li><li>Tu vis des <b>conflits</b> naturels avec d’autres joueurs.</li><li>Tu montes un <b>dossier</b> avec ton groupe.</li><li>Le staff et les GM <b>valident</b> ou refusent.</li></ol>\n<h2>Rôles dans un groupe</h2>\n<p>Chef, bras droit, membres, recrues : la hiérarchie doit exister en RP. Le chef est responsable des actions de son groupe.</p>\n<h2>Alliances et fusions</h2>\n<p>Une alliance ou une fusion entre groupes se joue en RP et se déclare au staff. <span class=\"imp\">Une alliance ne doit jamais servir à contourner les limites d’effectif.</span></p>\n<h2>Départ et exclusion</h2>\n<p>Un membre qui part ou qui est exclu doit être signalé au staff. Il ne peut pas rejoindre immédiatement un groupe rival pour récupérer des informations.</p>\n<h2>Changement de nom</h2>\n<p>Tout changement de nom, de couleurs ou de hiérarchie doit être validé par le staff.</p>"
+  },
+  {
+   "id": "ill-territoires",
+   "title": "Territoires & immersion",
+   "sub": "Règlement illégal",
+   "tags": "illégal,territoires,immersion",
+   "icon": "🌍",
+   "html": "<h2>🌍 5. Territoires</h2>\n<h3>Obtention</h3>\n<p>Seul un <b>groupe officiel</b> peut demander un territoire, par ticket, avec justification RP. Le staff décide de l’attribution et de la taille.</p>\n<h3>Règles d’un territoire</h3>\n<ul><li>Un territoire se gagne et se défend en RP, jamais par le HRP.</li><li>Un territoire n’est pas une zone safe : le Fear RP s’y applique toujours.</li><li>Interdit d’agresser sans raison RP les personnes qui traversent la zone.</li><li>Pas de camping, de spawn kill ni de blocage de la zone.</li><li>Les civils, forces de l’ordre et services de secours doivent pouvoir y circuler.</li></ul>\n<h3>Perte d’un territoire</h3>\n<p>Un territoire peut être retiré en cas d’inactivité, d’abus ou de défaite RP validée par le staff.</p>\n<h2>Immersion</h2>\n<ul><li>Tenue, véhicules et comportement cohérents avec ton personnage et ton groupe.</li><li>Vocabulaire réaliste, pas de langage HRP.</li><li>Pas de comportement de « film d’action » : pas d’actions impossibles.</li><li>Pas de signes distinctifs de groupe sans validation du staff.</li></ul>\n<div class=\"big\">Le staff peut intervenir si l’immersion est cassée.</div>\n<h2>Zones interdites</h2>\n<ul class=\"ban\"><li>Hôpital et services de secours</li><li>Commissariat et administration</li><li>Safe zones</li><li>Entreprises légales pendant leur service</li></ul>\n<h2>Conflit de territoire</h2>\n<p>Un conflit de territoire démarre par un RP, pas par un clash direct. Le staff peut arbitrer et trancher en cas de litige.</p>\n<h2>Revenus d’un territoire</h2>\n<p>Les revenus sont limités et restent cohérents avec la taille et l’activité de la zone. <span class=\"imp\">Aucun avantage ne peut être exploité en farm.</span></p>\n<h2>Signes distinctifs</h2>\n<p>Graffitis, couleurs et tenues de groupe doivent être validés par le staff pour garder une immersion cohérente.</p>\n<h2>Cohabitation</h2>\n<p>Deux groupes peuvent cohabiter dans une zone, tant que le RP reste cohérent et sans harcèlement mutuel.</p>"
+  },
+  {
+   "id": "ill-activites",
+   "title": "Braquages & activités",
+   "sub": "Règlement illégal",
+   "tags": "illégal,braquages,activités",
+   "icon": "💰",
+   "html": "<h2>Principe</h2>\n<p><span class=\"imp\">Aucune activité illégale sans motif RP.</span> Chaque braquage ou trafic doit s’inscrire dans une histoire (dette, conflit, besoin, ambition).</p>\n<h2>Braquages</h2>\n<h3>Conditions</h3>\n<ul><li>Respecter le nombre minimum de policiers en service défini par le staff.</li><li>Un délai doit s’écouler entre deux braquages du même lieu.</li><li>Un groupe ne peut pas enchaîner les braquages sans RP entre eux.</li><li>Pas de braquage à un endroit protégé (safe zone).</li></ul>\n<h3>Pendant le braquage</h3>\n<ul><li>Fear RP obligatoire pour les victimes et les braqueurs face à la police.</li><li>Négociation possible, elle fait partie du RP.</li><li>Une prise d’otage doit rester réaliste, avec un nombre limité d’otages.</li><li>Les otages ne sont ni abattus gratuitement ni utilisés sans fin.</li></ul>\n<h2>Trafics et commerce illégal</h2>\n<ul><li>La production et la vente se jouent en RP, pas en farm automatique.</li><li>Interdit de vendre ou de proposer en zone safe ou en présence d’agents sans RP.</li><li>Les prix restent cohérents avec l’économie du serveur.</li><li>Pas de revente d’objets du serveur contre argent réel.</li></ul>\n<h2>Armes</h2>\n<p>Une arme se trouve ou s’achète en RP. Le port ostensible en zone protégée est interdit. Utiliser une arme sans raison RP est du RDM.</p>\n<h2>Vol de véhicules</h2>\n<p>Le vol doit avoir une raison RP. Le véhicule volé n’est pas gardé indéfiniment et son propriétaire doit pouvoir réagir.</p>\n<h2>Corruption</h2>\n<p class=\"imp\">Toute corruption d’un agent public doit se jouer entièrement en RP et ne doit jamais s’appuyer sur une information HRP.</p>\n<h2>Règles générales de scène</h2>\n<ul><li>Annonce clairement la situation en RP (menace, demande, délai).</li><li>Laisse un temps de réaction raisonnable à la victime.</li><li>Une scène ne dure pas indéfiniment : elle se conclut.</li></ul>\n<h2>Prise d’otage</h2>\n<ul><li>Un otage reste une personne : il peut parler, avoir peur, négocier.</li><li>Pas d’otage tué sans raison RP.</li><li>Un otage peut être libéré par la police après négociation.</li></ul>\n<h2>Fuite après un braquage</h2>\n<p>La fuite est possible, réaliste et sans comportement de « film ». Pas de zones où l’on se cache indéfiniment.</p>\n<h2>Agressions et vols sur joueurs</h2>\n<p><span class=\"imp\">Un vol ou une agression sur un joueur doit avoir un motif RP.</span> Pas de vol d’un bien essentiel sans raison, et pas de ciblage répété du même joueur.</p>"
+  },
+  {
+   "id": "ill-conflits",
+   "title": "Conflits & forces de l’ordre",
+   "sub": "Règlement illégal",
+   "tags": "illégal,conflits,police",
+   "icon": "🔫",
+   "html": "<h2>Conflits entre groupes</h2>\n<ul><li>Un conflit naît d’une raison RP claire et s’explique en RP.</li><li>Une guerre de groupes doit être validée par le staff.</li><li>Interdit d’impliquer des civils étrangers au conflit.</li><li>Le conflit ne se déroule pas en safe zone et ne se règle jamais par le Discord.</li><li>Après une défaite, applique l’amnésie RP : pas de vengeance immédiate.</li></ul>\n<h2>Gunfights</h2>\n<ul><li>Fear RP et Pain RP restent obligatoires.</li><li>Interdit de tirer sur un véhicule sans raison RP.</li><li>Pas de « course aux kills » : le but est le RP, pas le score.</li><li>Une scène se termine proprement : on relâche, on soigne, on joue la suite.</li></ul>\n<h2>Kidnapping et séquestration</h2>\n<ul><li>Motif RP obligatoire et durée raisonnable.</li><li>La victime doit pouvoir jouer son personnage : pas de séquestration interminable.</li><li>Les violences extrêmes et les humiliations à caractère sexuel ou discriminatoire sont interdites.</li></ul>\n<div class=\"big\">Une scène de kidnapping peut être interrompue par un GM à tout moment.</div>\n<h2>Rapports avec les forces de l’ordre</h2>\n<h3>Fuite et poursuite</h3>\n<p>La fuite doit être justifiée et rester réaliste. Provoquer la police sans raison (cop baiting) est interdit.</p>\n<h3>Arrestation et fouille</h3>\n<p>Si tu es menotté ou fouillé, joue-le : tu ne résistes pas de façon irréaliste et tu ne retires pas ses menottes en dehors du RP.</p>\n<h3>Prison</h3>\n<p>La prison est une conséquence RP. Tu dois la craindre. Tenter d’y échapper par HRP ou par bug est interdit.</p>\n<h3>Négociation</h3>\n<p>La négociation avec la police est encouragée : elle enrichit le RP des deux côtés.</p>\n<h2>Guerre de groupes</h2>\n<ul><li>Déclaration RP claire, validée par le staff.</li><li>Durée et fin du conflit encadrées (trêve, négociation).</li><li>Les civils ne sont pas des cibles.</li><li>Pas de conflits en safe zone.</li></ul>\n<h2>Embuscades</h2>\n<p>Une embuscade s’organise en RP et reste réaliste. <span class=\"imp\">Organiser une embuscade via le Discord est du metagaming.</span></p>\n<h2>La police dans un conflit</h2>\n<p>La police peut intervenir à tout moment. Fuir ou attaquer systématiquement les agents sans raison RP est interdit.</p>\n<h2>Cas particuliers</h2>\n<ul><li>Doute sur une situation ? Ouvre un ticket.</li><li>Bug pendant une scène ? Arrête et préviens un GM.</li><li>Scène hors de contrôle ? Un GM peut tout stopper.</li></ul>"
+  }
+ ]
+}

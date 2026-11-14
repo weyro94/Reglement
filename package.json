@@ -1,0 +1,17 @@
+{
+  "name": "overline-wiki",
+  "version": "1.0.0",
+  "description": "Wiki Overline RP + tableau de bord",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "mongodb": "^6.22.0"
+  }
+}

@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Tableau de bord · Wiki</title>
+<style>
+:root{--red:#d0111b;--redl:#ff4b52;--bg:#121214;--p1:#18181b;--p2:#1f1f23;--p3:#29292e;--line:#2e2e34;--ink:#ececf0;--mut:#8f8f9a;--ok:#2fbf71}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+button,input,select,textarea{font:inherit;color:inherit}
+input,select,textarea{background:var(--p2);border:1px solid var(--line);border-radius:6px;padding:8px 10px;width:100%;outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--redl)}
+textarea{resize:vertical}
+label{display:block;font-size:.78rem;color:var(--mut);margin:0 0 4px;font-weight:600;letter-spacing:.02em}
+a.b{text-decoration:none;color:var(--ink)}
+.b{background:var(--p3);border:1px solid var(--line);border-radius:6px;padding:7px 12px;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+.b:hover{border-color:#47474f;background:#303036}
+.b.pri{background:var(--red);border-color:var(--red);color:#fff;font-weight:700}
+.b.pri:hover{background:#e3141f}
+.b.ghost{background:none}
+.b.danger{color:var(--redl)}
+.b.sm{padding:4px 8px;font-size:.85rem}
+.b:disabled{opacity:.45;cursor:default}
+.hide{display:none!important}
+
+/* Connexion */
+#login{min-height:100%;display:flex;align-items:center;justify-content:center;padding:20px}
+#login form{background:var(--p1);border:1px solid var(--line);border-top:4px solid var(--red);border-radius:8px;padding:28px;width:100%;max-width:360px}
+#login h1{margin:0 0 4px;font-size:1.3rem}
+#login p{margin:0 0 18px;color:var(--mut)}
+#login .err{color:var(--redl);min-height:1.4em;margin:10px 0 0}
+
+/* Structure */
+#app{display:grid;grid-template-rows:54px 1fr;height:100%}
+header{display:flex;align-items:center;gap:12px;padding:0 14px;background:var(--p1);border-bottom:3px solid var(--red)}
+header .logo{font-weight:800;letter-spacing:.12em}
+header .logo span{color:var(--red)}
+header .sub{color:var(--mut);font-size:.85rem}
+header .sp{flex:1}
+#dirty{font-size:.82rem;color:var(--mut)}
+#dirty.on{color:#ffb547}
+.main{display:grid;grid-template-columns:200px 1fr;min-height:0}
+nav.tabs{background:var(--p1);border-right:1px solid var(--line);padding:10px 0;overflow:auto}
+nav.tabs a{display:flex;gap:10px;align-items:center;padding:10px 18px;color:#ddd;text-decoration:none;font-weight:600;border-left:4px solid transparent;cursor:pointer}
+nav.tabs a:hover{background:var(--p2)}
+nav.tabs a.on{background:var(--p2);border-left-color:var(--red);color:#fff}
+section.tab{display:none;min-height:0;overflow:auto}
+section.tab.on{display:block}
+.pad{padding:22px 26px 60px;max-width:980px}
+h2.t{margin:0 0 4px;font-size:1.35rem}
+p.d{margin:0 0 20px;color:var(--mut)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.fld{margin-bottom:14px}
+.card{background:var(--p1);border:1px solid var(--line);border-radius:8px;padding:18px;margin-bottom:18px}
+.card h3{margin:0 0 14px;font-size:1rem}
+.hint{font-size:.8rem;color:var(--mut);margin-top:4px}
+
+/* Pages */
+#tab-pages.on{display:grid;grid-template-columns:250px 1fr;height:100%}
+.plist{border-right:1px solid var(--line);background:#151517;display:flex;flex-direction:column;min-height:0}
+.plist .top{padding:12px;display:flex;flex-direction:column;gap:8px;border-bottom:1px solid var(--line)}
+.plist ul{list-style:none;margin:0;padding:6px 0;overflow:auto;flex:1}
+.plist li{display:flex;align-items:center;gap:10px;padding:9px 14px;cursor:pointer;border-left:4px solid transparent}
+.plist li:hover{background:var(--p2)}
+.plist li.on{background:var(--p2);border-left-color:var(--red)}
+.plist li .ic{width:22px;text-align:center}
+.plist li small{display:block;color:var(--mut);font-size:.75rem}
+.plist li .warn{margin-left:auto;font-size:.7rem;color:#ffb547}
+.ed{display:flex;flex-direction:column;min-height:0;min-width:0}
+.meta{padding:12px 16px;border-bottom:1px solid var(--line);background:var(--p1)}
+.meta .row{display:grid;grid-template-columns:70px 1.4fr 1.4fr 1fr;gap:10px}
+.meta .row2{display:grid;grid-template-columns:1fr 160px auto;gap:10px;margin-top:10px;align-items:end}
+.meta details summary{cursor:pointer;color:var(--mut);font-size:.82rem;margin-top:8px}
+.tb{display:flex;flex-wrap:wrap;gap:4px;padding:8px 10px;border-bottom:1px solid var(--line);background:#1b1b1e;position:relative}
+.tb .g{display:flex;gap:3px;padding-right:6px;margin-right:4px;border-right:1px solid var(--line)}
+.tb .g:last-child{border:0}
+.tb button{background:none;border:1px solid transparent;border-radius:5px;padding:5px 8px;cursor:pointer;color:#ddd;min-width:32px}
+.tb button:hover{background:var(--p3);border-color:var(--line)}
+.tb button.on{background:var(--red);color:#fff}
+.tb select{width:auto;padding:4px 6px}
+.edwrap{flex:1;min-height:0;position:relative;background:#161618}
+.edwrap iframe,.edwrap textarea{position:absolute;inset:0;width:100%;height:100%;border:0}
+.edwrap textarea{font:13px/1.55 ui-monospace,Consolas,monospace;background:#0f0f11;border-radius:0;padding:16px;resize:none;white-space:pre-wrap}
+.drop{position:absolute;top:100%;left:0;z-index:20;background:var(--p1);border:1px solid var(--line);border-radius:8px;padding:6px;min-width:260px;box-shadow:0 10px 30px #000a}
+.drop button{display:block;width:100%;text-align:left;padding:8px 10px}
+.drop button small{display:block;color:var(--mut)}
+
+/* Menu */
+.nitem{display:flex;gap:8px;align-items:center;background:var(--p1);border:1px solid var(--line);border-radius:6px;padding:8px;margin-bottom:6px}
+.nitem .k{font-size:.72rem;color:var(--mut);width:84px;flex:none;text-transform:uppercase;font-weight:700}
+.nitem.sep{opacity:.8}
+.nitem.heading{background:#1a1a1d}
+.nitem input.icon{width:52px;flex:none;text-align:center}
+.nitem .mv{display:flex;flex-direction:column;gap:2px}
+.nitem .mv button{padding:0 6px;line-height:1.2}
+.nitem.drag{opacity:.4}
+.nitem .h{cursor:grab;color:var(--mut);padding:0 4px;user-select:none}
+
+/* Images */
+.imgs{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+.im{background:var(--p1);border:1px solid var(--line);border-radius:8px;overflow:hidden;display:flex;flex-direction:column}
+.im .th{height:120px;background:#0c0c0e center/contain no-repeat}
+.im .nm{padding:6px 8px;font-size:.78rem;word-break:break-all;color:#ccc}
+.im .ac{display:flex;gap:4px;padding:0 8px 8px}
+.im.pick{cursor:pointer}.im.pick:hover{border-color:var(--redl)}
+.dz{border:2px dashed var(--line);border-radius:8px;padding:22px;text-align:center;color:var(--mut);margin-bottom:16px;cursor:pointer}
+.dz.over{border-color:var(--redl);color:#fff}
+.imgfield{display:flex;gap:8px;align-items:center}
+.imgfield img{width:40px;height:40px;object-fit:contain;background:#0c0c0e;border-radius:4px;border:1px solid var(--line)}
+
+/* Divers */
+.colors{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.colors div{display:flex;gap:6px;align-items:center}
+.colors input[type=color]{width:42px;height:34px;padding:2px;flex:none}
+table.bk{width:100%;border-collapse:collapse}
+table.bk td{padding:8px;border-bottom:1px solid var(--line)}
+.modal{position:fixed;inset:0;background:#000b;z-index:50;display:flex;align-items:center;justify-content:center;padding:20px}
+.modal .box{background:var(--p1);border:1px solid var(--line);border-radius:10px;width:100%;max-width:900px;max-height:90vh;display:flex;flex-direction:column}
+.modal .box.wide{max-width:1400px;height:90vh}
+.modal .hd{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line)}
+.modal .hd b{flex:1}
+.modal .bd{padding:16px;overflow:auto;flex:1;min-height:0}
+.modal iframe{width:100%;height:100%;border:0;background:#161618;display:block;margin:0 auto;transition:width .2s}
+#toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--p3);border:1px solid var(--line);padding:10px 18px;border-radius:8px;z-index:60;box-shadow:0 8px 24px #000a;transition:.2s;opacity:0;pointer-events:none}
+#toast.on{opacity:1}
+#toast.ok{border-color:var(--ok)}#toast.err{border-color:var(--redl)}
+.banner{background:#3a2a05;border:1px solid #8a6410;color:#ffd27a;padding:10px 14px;border-radius:6px;margin:12px 16px 0}
+.mobmenu{display:none}
+@media(max-width:860px){
+  .main{grid-template-columns:1fr}
+  nav.tabs{position:fixed;top:54px;left:0;bottom:0;width:220px;z-index:30;transform:translateX(-100%);transition:.2s}
+  nav.tabs.open{transform:none}
+  .mobmenu{display:inline-flex}
+  header .sub,#dirty{display:none}
+  #tab-pages.on{grid-template-columns:1fr;grid-template-rows:auto 1fr}
+  .plist{max-height:180px;border-right:0;border-bottom:1px solid var(--line)}
+  .meta .row,.meta .row2,.grid2,.grid3,.colors{grid-template-columns:1fr 1fr}
+  .pad{padding:16px}
+  .edwrap{min-height:60vh}
+}
+</style>
+</head>
+<body>
+
+<!-- CONNEXION -->
+<div id="login" class="hide">
+  <form id="loginForm">
+    <h1>🔒 Tableau de bord</h1>
+    <p>Connecte-toi pour modifier le wiki.</p>
+    <label for="pw">Mot de passe</label>
+    <input id="pw" type="password" autocomplete="current-password" autofocus>
+    <div class="err" id="loginErr"></div>
+    <button class="b pri" style="width:100%;justify-content:center;margin-top:6px">Se connecter</button>
+  </form>
+</div>
+
+<!-- APPLICATION -->
+<div id="app" class="hide">
+  <header>
+    <button class="b ghost mobmenu" id="mobBtn">☰</button>
+    <div class="logo" id="hdrLogo">WIKI</div>
+    <div class="sub">Tableau de bord</div>
+    <div class="sp"></div>
+    <span id="dirty">Tout est enregistré</span>
+    <button class="b" id="btnPreview" title="Aperçu des modifications non enregistrées">👁️ Aperçu</button>
+    <a class="b" href="/" target="_blank">↗ Voir le site</a>
+    <button class="b pri" id="btnSave" title="Ctrl + S">💾 Enregistrer</button>
+  </header>
+  <div class="main">
+    <nav class="tabs" id="tabs">
+      <a data-t="pages" class="on">📄 Pages</a>
+      <a data-t="menu">🧭 Menu</a>
+      <a data-t="settings">⚙️ Réglages</a>
+      <a data-t="images">🖼️ Images</a>
+      <a data-t="backups">🕘 Sauvegardes</a>
+      <a data-t="security">🔒 Sécurité</a>
+    </nav>
+    <div style="min-height:0;display:flex;flex-direction:column">
+      <div id="pwWarn" class="banner hide">⚠️ Tu utilises encore le mot de passe par défaut. Change-le dans <a href="#" data-goto="security" style="color:#ffd27a">Sécurité</a>.</div>
+
+      <!-- PAGES -->
+      <section class="tab on" id="tab-pages" style="flex:1">
+        <div class="plist">
+          <div class="top">
+            <button class="b pri" id="addPage">＋ Nouvelle page</button>
+            <input id="pSearch" placeholder="🔎 Rechercher une page…">
+          </div>
+          <ul id="pages"></ul>
+        </div>
+        <div class="ed" id="editor">
+          <div class="meta">
+            <div class="row">
+              <div><label>Icône</label><input id="fIcon" maxlength="4" style="text-align:center"></div>
+              <div><label>Titre de la page</label><input id="fTitle"></div>
+              <div><label>Sous-titre</label><input id="fSub"></div>
+              <div><label>Étiquettes <span style="font-weight:400">(séparées par des virgules)</span></label><input id="fTags"></div>
+            </div>
+            <details>
+              <summary>Options avancées de la page</summary>
+              <div class="row2">
+                <div><label>Adresse de la page (lien : <code id="fUrl"></code>)</label><input id="fId"></div>
+                <button class="b" id="dupPage">⧉ Dupliquer</button>
+                <button class="b danger" id="delPage">🗑 Supprimer la page</button>
+              </div>
+            </details>
+          </div>
+          <div class="tb" id="tb">
+            <div class="g">
+              <button data-c="undo" title="Annuler (Ctrl+Z)">↶</button>
+              <button data-c="redo" title="Rétablir (Ctrl+Y)">↷</button>
+            </div>
+            <div class="g">
+              <select id="blockSel" title="Type de texte">
+                <option value="p">Paragraphe</option>
+                <option value="h2">Grand titre</option>
+                <option value="h3">Sous-titre</option>
+              </select>
+            </div>
+            <div class="g">
+              <button data-c="bold" title="Gras (Ctrl+B)"><b>G</b></button>
+              <button data-c="italic" title="Italique (Ctrl+I)"><i>I</i></button>
+              <button data-c="imp" title="Texte important (rouge)" style="color:var(--redl);font-weight:800">A</button>
+              <button data-c="tag" title="Étiquette rouge (ex : OBLIGATOIRE)">🏷️</button>
+              <button data-c="link" title="Lien (vers une page ou un site)">🔗</button>
+            </div>
+            <div class="g">
+              <button data-c="ul" title="Liste à puces">• ≡</button>
+              <button data-c="ol" title="Liste numérotée">1. ≡</button>
+              <select id="listStyle" title="Style de la liste">
+                <option value="">Puces normales</option>
+                <option value="ok">✅ Autorisé</option>
+                <option value="no">❌ Interdit</option>
+                <option value="ban">⛔ Interdiction</option>
+              </select>
+            </div>
+            <div class="g" style="position:relative">
+              <button id="insBtn" title="Insérer un bloc">＋ Insérer ▾</button>
+              <div class="drop hide" id="insDrop">
+                <button data-ins="box">📦 Encadré <small>Bloc gris avec bordure rouge</small></button>
+                <button data-ins="big">🚨 Alerte <small>Bloc rouge, texte en gras</small></button>
+                <button data-ins="example">📌 Exemple ❌ / ✅ <small>À ne pas faire / à faire</small></button>
+                <button data-ins="cards">🗂️ Cartes <small>Raccourcis vers des pages</small></button>
+                <button data-ins="btn">🔴 Bouton <small>Ex : Rejoindre le Discord</small></button>
+                <button data-ins="dl">📖 Définitions <small>Terme + explication (lexique)</small></button>
+                <button data-ins="img">🖼️ Image <small>Depuis tes images</small></button>
+              </div>
+            </div>
+            <div class="g">
+              <button data-c="up" title="Monter le bloc">▲</button>
+              <button data-c="down" title="Descendre le bloc">▼</button>
+              <button data-c="dup" title="Dupliquer l'élément (puce, carte, bloc)">⧉</button>
+              <button data-c="del" title="Supprimer l'élément (puce, carte, image, bloc)">🗑</button>
+            </div>
+            <div class="g">
+              <button data-c="code" id="codeBtn" title="Modifier le code HTML">&lt;/&gt;</button>
+            </div>
+          </div>
+          <div class="edwrap">
+            <iframe id="edFrame" title="Éditeur"></iframe>
+            <textarea id="edCode" class="hide" spellcheck="false"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- MENU -->
+      <section class="tab" id="tab-menu">
+        <div class="pad">
+          <h2 class="t">Menu de gauche</h2>
+          <p class="d">Change l'ordre avec ▲▼ (ou glisse avec ⠿), renomme les entrées et ajoute des liens, des titres ou des séparateurs.</p>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
+            <select id="addNavPage" style="width:auto"></select>
+            <button class="b" id="addNavPageBtn">＋ Page</button>
+            <button class="b" data-addnav="link">＋ Lien externe</button>
+            <button class="b" data-addnav="heading">＋ Titre de section</button>
+            <button class="b" data-addnav="sep">＋ Séparateur</button>
+          </div>
+          <div id="navList"></div>
+        </div>
+      </section>
+
+      <!-- RÉGLAGES -->
+      <section class="tab" id="tab-settings">
+        <div class="pad">
+          <h2 class="t">Réglages du site</h2>
+          <p class="d">Nom, logo, liens et couleurs. N'oublie pas d'enregistrer.</p>
+          <div class="card">
+            <h3>Identité</h3>
+            <div class="grid2">
+              <div class="fld"><label>Nom (partie blanche)</label><input data-s="brand1"></div>
+              <div class="fld"><label>Nom (partie rouge)</label><input data-s="brand2"></div>
+              <div class="fld"><label>Titre de l'onglet (page d'accueil)</label><input data-s="siteName"></div>
+              <div class="fld"><label>Fin du titre des autres pages</label><input data-s="titleSuffix"><div class="hint">Ex : « Lore du serveur | Wiki | Overline »</div></div>
+            </div>
+            <div class="fld"><label>Description (Google, aperçus de liens)</label><input data-s="description" placeholder="Wiki officiel du serveur…"></div>
+            <div class="grid2">
+              <div class="fld"><label>Logo</label><div class="imgfield"><img data-prev="logo"><input data-s="logo"><button class="b" data-pick="logo">Choisir</button></div></div>
+              <div class="fld"><label>Icône d'onglet (favicon)</label><div class="imgfield"><img data-prev="favicon"><input data-s="favicon"><button class="b" data-pick="favicon">Choisir</button></div></div>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Liens et pages</h3>
+            <div class="grid2">
+              <div class="fld"><label>Lien d'invitation Discord</label><input data-s="discord"><div class="hint">Utilisé partout où il y a <code>{{discord}}</code> (menu, boutons, textes).</div></div>
+              <div class="fld"><label>Page d'accueil</label><select data-s="homePage" id="homeSel"></select></div>
+            </div>
+          </div>
+          <div class="card">
+            <h3>« Dernière édition par »</h3>
+            <div class="grid3">
+              <div class="fld"><label>Auteur</label><input data-s="editedBy"></div>
+              <div class="fld"><label>Date</label><input data-s="editedAt"></div>
+              <div class="fld"><label>&nbsp;</label><label style="display:flex;gap:8px;align-items:center;color:var(--ink);font-weight:400;margin-top:8px"><input type="checkbox" data-s="autoDate" style="width:auto"> Mettre la date à jour à chaque enregistrement</label></div>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Couleurs</h3>
+            <div class="colors" id="colors"></div>
+            <div style="margin-top:12px"><button class="b sm" id="resetColors">Remettre les couleurs d'origine</button></div>
+          </div>
+          <div class="card">
+            <h3>CSS personnalisé <span style="font-weight:400;color:var(--mut)">(avancé, optionnel)</span></h3>
+            <textarea data-s="customCss" rows="5" style="font-family:ui-monospace,Consolas,monospace" placeholder=".box{border-left-color:gold}"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- IMAGES -->
+      <section class="tab" id="tab-images">
+        <div class="pad" style="max-width:none">
+          <h2 class="t">Images</h2>
+          <p class="d">Ajoute tes images ici, puis insère-les dans une page avec « ＋ Insérer → Image ».</p>
+          <div class="dz" id="dz">📤 Glisse des images ici ou <u>clique pour en choisir</u> (png, jpg, gif, webp, svg — 10 Mo max)</div>
+          <input type="file" id="fileIn" accept="image/*" multiple class="hide">
+          <div class="imgs" id="imgs"></div>
+        </div>
+      </section>
+
+      <!-- SAUVEGARDES -->
+      <section class="tab" id="tab-backups">
+        <div class="pad">
+          <h2 class="t">Sauvegardes</h2>
+          <p class="d">Une copie est faite automatiquement à chaque enregistrement (les 40 dernières sont gardées). Tu peux revenir en arrière à tout moment.</p>
+          <div class="card" style="padding:6px 12px"><table class="bk" id="bkList"></table></div>
+          <button class="b" id="exportBtn">⬇️ Télécharger tout le contenu (.json)</button>
+        </div>
+      </section>
+
+      <!-- SÉCURITÉ -->
+      <section class="tab" id="tab-security">
+        <div class="pad" style="max-width:520px">
+          <h2 class="t">Sécurité</h2>
+          <p class="d">Change le mot de passe du tableau de bord.</p>
+          <div class="card">
+            <div class="fld"><label>Mot de passe actuel</label><input type="password" id="pwCur" autocomplete="current-password"></div>
+            <div class="fld"><label>Nouveau mot de passe (8 caractères min.)</label><input type="password" id="pwNew" autocomplete="new-password"></div>
+            <div class="fld"><label>Confirmer</label><input type="password" id="pwNew2" autocomplete="new-password"></div>
+            <button class="b pri" id="pwBtn">Changer le mot de passe</button>
+          </div>
+          <button class="b" id="logout">⏻ Se déconnecter</button>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<!-- Fenêtres -->
+<div class="modal hide" id="mPreview">
+  <div class="box wide">
+    <div class="hd"><b>Aperçu (non enregistré)</b>
+      <button class="b sm" data-w="100%">🖥️ Ordinateur</button>
+      <button class="b sm" data-w="390px">📱 Téléphone</button>
+      <button class="b sm" data-close>✕ Fermer</button></div>
+    <div class="bd" style="padding:0;background:#0b0b0c"><iframe id="pvFrame" title="Aperçu"></iframe></div>
+  </div>
+</div>
+<div class="modal hide" id="mPick">
+  <div class="box">
+    <div class="hd"><b>Choisir une image</b><button class="b sm" id="pickUp">📤 Ajouter une image</button><button class="b sm" data-close>✕</button></div>
+    <div class="bd"><div class="imgs" id="pickImgs"></div></div>
+  </div>
+</div>
+<div class="modal hide" id="mLink">
+  <div class="box" style="max-width:480px">
+    <div class="hd"><b>Lien</b><button class="b sm" data-close>✕</button></div>
+    <div class="bd">
+      <div class="fld"><label>Vers une page du wiki</label><select id="lnPage"></select></div>
+      <div class="fld"><label>… ou une adresse web</label><input id="lnUrl" placeholder="https://…"></div>
+      <div class="fld"><label style="display:flex;gap:8px;align-items:center;font-weight:400;color:var(--ink)"><input type="checkbox" id="lnBlank" style="width:auto"> Ouvrir dans un nouvel onglet</label></div>
+      <div style="display:flex;gap:8px;justify-content:space-between">
+        <button class="b danger" id="lnRemove">Retirer le lien</button>
+        <button class="b pri" id="lnOk">Valider</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="toast"></div>
+
+<script>
+(function(){
+"use strict";
+var $=function(s,r){return (r||document).querySelector(s)}, $$=function(s,r){return [].slice.call((r||document).querySelectorAll(s))};
+var site=null, cur=null, dirty=false, codeMode=false, ed=null, edDoc=null, selImg=null;
+var DEFAULT_COLORS={red:"#d0111b",redl:"#ff4b52",bg:"#161618",side:"#0f0f11",card:"#1d1d20",line:"#2b2b30",ink:"#e8e8ec",mut:"#8f8f9a"};
+var COLOR_NAMES={red:"Rouge principal",redl:"Rouge clair",bg:"Fond",side:"Menu",card:"Blocs",line:"Bordures",ink:"Texte",mut:"Texte discret"};
+
+function toast(msg,kind){var t=$("#toast");t.textContent=msg;t.className="on "+(kind||"");clearTimeout(t._t);t._t=setTimeout(function(){t.className=""},2600)}
+function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")}
+function api(method,url,body){
+  return fetch("/api"+url,{method:method,credentials:"same-origin",headers:{"Content-Type":"application/json","X-Requested-With":"dashboard"},body:body===undefined?undefined:JSON.stringify(body)})
+    .then(function(r){
+      if(r.status===401&&url!=="/login"){showLogin();throw new Error("Session expirée, reconnecte-toi")}
+      var ct=r.headers.get("content-type")||"";
+      return (ct.indexOf("json")>-1?r.json():r.text()).then(function(d){if(!r.ok)throw new Error(d&&d.error||d||"Erreur");return d});
+    });
+}
+function setDirty(v){dirty=v;var d=$("#dirty");d.textContent=v?"● Modifications non enregistrées":"Tout est enregistré";d.classList.toggle("on",v)}
+function slug(s){return String(s).normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"").slice(0,40)||"page"}
+function uniqueId(base){var id=base,i=2;while(site.pages.some(function(p){return p.id===id}))id=base+"-"+(i++);return id}
+
+/* ---------- Connexion ---------- */
+function showLogin(){$("#app").classList.add("hide");$("#login").classList.remove("hide");$("#pw").focus()}
+$("#loginForm").onsubmit=function(e){e.preventDefault();$("#loginErr").textContent="";
+  api("POST","/login",{password:$("#pw").value}).then(function(){$("#pw").value="";start()}).catch(function(err){$("#loginErr").textContent=err.message})};
+api("GET","/me").then(function(m){m.authed?start():showLogin()});
+
+function start(){
+  Promise.all([api("GET","/site"),api("GET","/me")]).then(function(r){
+    site=r[0];$("#pwWarn").classList.toggle("hide",!r[1].defaultPassword);
+    $("#login").classList.add("hide");$("#app").classList.remove("hide");
+    var st=site.settings;$("#hdrLogo").innerHTML=esc(st.brand1)+"<span>"+esc(st.brand2)+"</span>";
+    if(!site.settings.colors)site.settings.colors=Object.assign({},DEFAULT_COLORS);
+    setupEditor(function(){renderPages();openPage((cur&&find(cur))?cur:site.pages[0].id)});
+    renderNav();renderSettings();setDirty(false);
+  }).catch(function(e){toast(e.message,"err")});
+}
+
+/* ---------- Onglets ---------- */
+function goTab(t){$$("nav.tabs a").forEach(function(a){a.classList.toggle("on",a.dataset.t===t)});$$("section.tab").forEach(function(s){s.classList.toggle("on",s.id==="tab-"+t)});
+  $("#tabs").classList.remove("open");
+  if(t==="images")loadImages();if(t==="backups")loadBackups();if(t==="menu")renderNav();if(t==="settings")renderSettings()}
+$$("nav.tabs a").forEach(function(a){a.onclick=function(){goTab(a.dataset.t)}});
+document.addEventListener("click",function(e){var g=e.target.closest("[data-goto]");if(g){e.preventDefault();goTab(g.dataset.goto)}});
+$("#mobBtn").onclick=function(){$("#tabs").classList.toggle("open")};
+
+/* ---------- Pages ---------- */
+function find(id){for(var i=0;i<site.pages.length;i++)if(site.pages[i].id===id)return site.pages[i]}
+function inMenu(id){return site.nav.some(function(n){return n.type==="page"&&n.id===id})}
+function renderPages(){
+  var q=$("#pSearch").value.trim().toLowerCase();
+  var order=[];site.nav.forEach(function(n){if(n.type==="page"&&find(n.id)&&order.indexOf(n.id)<0)order.push(n.id)});
+  site.pages.forEach(function(p){if(order.indexOf(p.id)<0)order.push(p.id)});
+  $("#pages").innerHTML=order.map(find).filter(function(p){return !q||(p.title+" "+p.tags+" "+p.html.replace(/<[^>]+>/g," ")).toLowerCase().indexOf(q)>-1})
+    .map(function(p){return '<li data-id="'+esc(p.id)+'" class="'+(p.id===cur?"on":"")+'"><span class="ic">'+esc(p.icon)+'</span><div>'+esc(p.title)+'<small>'+esc(p.sub)+'</small></div>'+(inMenu(p.id)?"":'<span class="warn" title="Cette page n\'est pas dans le menu">hors menu</span>')+'</li>'}).join("");
+  $$("#pages li").forEach(function(li){li.onclick=function(){openPage(li.dataset.id)}});
+}
+$("#pSearch").oninput=renderPages;
+
+function openPage(id){
+  syncCode();
+  var p=find(id);if(!p)return;cur=id;
+  $("#fIcon").value=p.icon||"";$("#fTitle").value=p.title||"";$("#fSub").value=p.sub||"";$("#fTags").value=p.tags||"";$("#fId").value=p.id;$("#fUrl").textContent="/#"+p.id;
+  ed.innerHTML=p.html;selImg=null;
+  if(codeMode)$("#edCode").value=p.html;
+  $$("#pages li").forEach(function(li){li.classList.toggle("on",li.dataset.id===id)});
+  edDoc.defaultView.scrollTo(0,0);
+}
+[["#fIcon","icon"],["#fTitle","title"],["#fSub","sub"],["#fTags","tags"]].forEach(function(f){
+  $(f[0]).oninput=function(){var p=find(cur);p[f[1]]=this.value;setDirty(true);var li=$('#pages li[data-id="'+cur+'"]');if(li){li.querySelector(".ic").textContent=p.icon;li.querySelector("div").firstChild.textContent=p.title}}});
+$("#fId").onchange=function(){
+  var p=find(cur),old=p.id,nid=slug(this.value);
+  if(nid===old){this.value=old;return}
+  nid=uniqueId(nid);p.id=nid;
+  site.nav.forEach(function(n){if(n.type==="page"&&n.id===old)n.id=nid});
+  var re=new RegExp('href="#'+old.replace(/[-]/g,"\\-")+'"',"g");
+  site.pages.forEach(function(q){q.html=q.html.replace(re,'href="#'+nid+'"')});
+  if(site.settings.homePage===old)site.settings.homePage=nid;
+  cur=nid;this.value=nid;$("#fUrl").textContent="/#"+nid;ed.innerHTML=p.html;setDirty(true);renderPages();toast("Adresse changée, les liens ont été mis à jour")};
+$("#addPage").onclick=function(){
+  var t=prompt("Titre de la nouvelle page :");if(!t)return;
+  var p={id:uniqueId(slug(t)),title:t,sub:"",tags:"",icon:"📄",html:"<h2>Titre</h2>\n<p>Écris ton texte ici…</p>"};
+  site.pages.push(p);site.nav.push({type:"page",id:p.id,label:t});setDirty(true);renderPages();openPage(p.id);toast("Page créée et ajoutée en bas du menu","ok")};
+$("#dupPage").onclick=function(){var s=find(cur);var p=JSON.parse(JSON.stringify(s));p.id=uniqueId(s.id+"-copie");p.title=s.title+" (copie)";site.pages.push(p);
+  var idx=site.nav.findIndex(function(n){return n.type==="page"&&n.id===s.id});site.nav.splice(idx<0?site.nav.length:idx+1,0,{type:"page",id:p.id,label:p.title});setDirty(true);renderPages();openPage(p.id)};
+$("#delPage").onclick=function(){
+  if(site.pages.length<2)return toast("Il faut garder au moins une page","err");
+  var p=find(cur);if(!confirm("Supprimer la page « "+p.title+" » ?\n(Tu pourras la récupérer dans Sauvegardes si tu as déjà enregistré.)"))return;
+  site.pages=site.pages.filter(function(q){return q.id!==p.id});site.nav=site.nav.filter(function(n){return !(n.type==="page"&&n.id===p.id)});
+  if(site.settings.homePage===p.id)site.settings.homePage=site.pages[0].id;
+  cur=null;setDirty(true);renderPages();openPage(site.pages[0].id)};
+
+/* ---------- Éditeur visuel ---------- */
+function cssVars(){var c=site.settings.colors||{};return Object.keys(c).map(function(k){return "--"+k+":"+c[k]}).join(";")}
+function setupEditor(done){
+  var f=$("#edFrame");
+  f.onload=function(){
+    edDoc=f.contentDocument;ed=edDoc.getElementById("ed");
+    try{edDoc.execCommand("defaultParagraphSeparator",false,"p");edDoc.execCommand("styleWithCSS",false,false)}catch(e){}
+    ed.addEventListener("input",function(){var p=find(cur);if(p){p.html=clean(ed.innerHTML);setDirty(true)}});
+    ed.addEventListener("paste",function(e){e.preventDefault();var t=(e.clipboardData||window.clipboardData).getData("text/plain");
+      var parts=t.replace(/\r/g,"").split(/\n{2,}/);
+      if(parts.length>1)edDoc.execCommand("insertHTML",false,parts.map(function(x){return "<p>"+esc(x).replace(/\n/g,"<br>")+"</p>"}).join(""));
+      else edDoc.execCommand("insertText",false,t)});
+    ed.addEventListener("click",function(e){
+      if(selImg)selImg.classList.remove("ow-sel");selImg=null;
+      if(e.target.tagName==="IMG"){selImg=e.target;selImg.classList.add("ow-sel")}
+      if(e.target.closest("a"))e.preventDefault();
+    });
+    edDoc.addEventListener("selectionchange",updateToolbar);
+    edDoc.addEventListener("keydown",keys);
+    done&&done();
+  };
+  f.srcdoc='<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="/style.css"><style>:root{'+cssVars()+'}'+(site.settings.customCss||"")+
+    ' body{margin:0} article.page#ed{display:block;padding:24px 30px 160px;max-width:960px;outline:none;min-height:100vh} img.ow-sel{outline:3px solid #6cb6ff;outline-offset:2px} #ed a{cursor:text} #ed:empty:before{content:"Écris ici…";color:#666}</style></head><body><article class="page on" id="ed" contenteditable="true" spellcheck="true"></article></body></html>';
+}
+function clean(h){
+  var d=edDoc.createElement("div");d.innerHTML=h;
+  $$("img.ow-sel",d).forEach(function(i){i.classList.remove("ow-sel");if(!i.className)i.removeAttribute("class")});
+  $$("[style]",d).forEach(function(el){if(el.tagName!=="IMG")el.removeAttribute("style")});
+  $$("font,span:not([class])",d).forEach(function(el){while(el.firstChild)el.parentNode.insertBefore(el.firstChild,el);el.remove()});
+  $$("h2,h3,h4,p,li,b,i,span",d).forEach(function(el){if(!el.textContent.trim()&&!el.querySelector("img,br"))el.remove()});
+  $$("div:not([class])",d).forEach(function(el){var p=edDoc.createElement("p");while(el.firstChild)p.appendChild(el.firstChild);el.replaceWith(p)});
+  return d.innerHTML;
+}
+function commit(){var p=find(cur);if(p){p.html=clean(ed.innerHTML);setDirty(true)}updateToolbar()}
+function selNode(){var s=edDoc.getSelection();if(!s||!s.rangeCount)return null;var n=s.anchorNode;if(!n)return null;if(n.nodeType===3)n=n.parentNode;return ed.contains(n)?n:null}
+function topBlock(n){if(!n)return null;while(n&&n.parentNode!==ed)n=n.parentNode;return n}
+function updateToolbar(){
+  var n=selNode();if(!n)return;
+  var b=n.closest("h2,h3,p,li,dt,dd,div");var tag=b?b.tagName.toLowerCase():"p";
+  $("#blockSel").value=(tag==="h2"||tag==="h3")?tag:"p";
+  var ul=n.closest("ul");$("#listStyle").value=ul&&ul.className?(["ok","no","ban"].indexOf(ul.className)>-1?ul.className:""):"";
+  $('[data-c="bold"]').classList.toggle("on",!!n.closest("b,strong"));
+  $('[data-c="italic"]').classList.toggle("on",!!n.closest("i,em"));
+  $('[data-c="imp"]').classList.toggle("on",!!n.closest(".imp"));
+}
+function keys(e){if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==="s"){e.preventDefault();save()}}
+document.addEventListener("keydown",keys);
+
+function placeCaret(el){var r=edDoc.createRange();r.selectNodeContents(el);r.collapse(false);var s=edDoc.getSelection();s.removeAllRanges();s.addRange(r);ed.focus()}
+function insertBlock(html){
+  if(codeMode)return toast("Repasse en mode visuel pour insérer un bloc","err");
+  var t=edDoc.createElement("div");t.innerHTML=html;var el=t.firstElementChild;
+  var b=topBlock(selNode())||(selImg&&topBlock(selImg));
+  if(b)b.after(el);else ed.appendChild(el);
+  var focus=el.querySelector("li,small,dd")||el;placeCaret(focus);el.scrollIntoView({block:"center",behavior:"smooth"});commit();
+}
+var BLOCKS={
+  box:'<div class="box"><b>À savoir :</b> écris ton texte ici.</div>',
+  big:'<div class="big">Texte très important.</div>',
+  example:'<div class="box">📌 Exemple :<ul class="no"><li>Ce qu\'il ne faut pas faire</li></ul><ul class="ok"><li>Ce qu\'il faut faire</li></ul></div>',
+  cards:function(){var p=site.pages[0];return '<div class="cards"><a class="card" href="#'+esc(p.id)+'"><b>'+esc(p.icon)+' '+esc(p.title)+'</b><small>Courte description.</small></a></div>'},
+  btn:'<p><a class="btn" href="{{discord}}" target="_blank" rel="noopener">Rejoindre le Discord</a></p>',
+  dl:'<dl><dt>Terme</dt><dd>Définition du terme.</dd></dl>'
+};
+$("#insBtn").onmousedown=function(e){e.preventDefault()};
+$("#insBtn").onclick=function(){$("#insDrop").classList.toggle("hide")};
+document.addEventListener("click",function(e){if(!e.target.closest("#insBtn,#insDrop"))$("#insDrop").classList.add("hide")});
+$$("[data-ins]").forEach(function(b){b.onmousedown=function(e){e.preventDefault()};b.onclick=function(){
+  $("#insDrop").classList.add("hide");var k=b.dataset.ins;
+  if(k==="img"){var keep=selNode()||selImg;pickImage(function(url){if(keep){var r=edDoc.createRange();r.selectNodeContents(keep);r.collapse(false);edDoc.getSelection().removeAllRanges();edDoc.getSelection().addRange(r)}insertBlock('<img class="banner" src="'+esc(url)+'" alt="">')});return}
+  var h=BLOCKS[k];insertBlock(typeof h==="function"?h():h)}});
+
+$$("#tb [data-c]").forEach(function(b){b.onmousedown=function(e){e.preventDefault()};b.onclick=function(){cmd(b.dataset.c)}});
+$("#blockSel").onchange=function(){if(codeMode)return;ed.focus();edDoc.execCommand("formatBlock",false,this.value);commit()};
+$("#listStyle").onchange=function(){if(codeMode)return;var n=selNode();var ul=n&&n.closest("ul");
+  if(!ul){ed.focus();edDoc.execCommand("insertUnorderedList");n=selNode();ul=n&&n.closest("ul")}
+  if(ul){if(this.value)ul.className=this.value;else ul.removeAttribute("class")}commit()};
+
+function cmd(c){
+  if(c==="code")return toggleCode();
+  if(codeMode)return toast("Repasse en mode visuel (bouton </>)","err");
+  var n=selNode();ed.focus();
+  switch(c){
+    case "undo":case "redo":case "bold":case "italic":edDoc.execCommand(c);break;
+    case "ul":edDoc.execCommand("insertUnorderedList");break;
+    case "ol":edDoc.execCommand("insertOrderedList");break;
+    case "imp":{
+      var sp=n&&n.closest(".imp");
+      if(sp){while(sp.firstChild)sp.parentNode.insertBefore(sp.firstChild,sp);sp.remove()}
+      else{var s=edDoc.getSelection();if(!s.rangeCount||s.isCollapsed)return toast("Sélectionne d'abord le texte à mettre en rouge");
+        var r=s.getRangeAt(0);
+        if(r.startContainer===ed){var first=ed.childNodes[r.startOffset];if(first&&first.nodeType===1)r.selectNodeContents(first)}
+        var sn=r.startContainer.nodeType===3?r.startContainer.parentNode:r.startContainer;
+        var blk=sn.closest("p,h2,h3,h4,li,dt,dd,small")||topBlock(sn);
+        if(blk&&!blk.contains(r.endContainer))r.setEnd(blk,blk.childNodes.length);
+        if(blk&&r.endContainer===blk.parentNode)r.setEnd(blk,blk.childNodes.length);
+        var span=edDoc.createElement("span");span.className="imp";span.appendChild(r.extractContents());r.insertNode(span)}
+      break}
+    case "tag":edDoc.execCommand("insertHTML",false,' <span class="tag">OBLIGATOIRE</span> ');break;
+    case "link":return openLink(n);
+    case "up":case "down":{var b=topBlock(selImg||n);if(!b)return;var sib=c==="up"?b.previousElementSibling:b.nextElementSibling;if(!sib)return;c==="up"?sib.before(b):sib.after(b);b.scrollIntoView({block:"center",behavior:"smooth"});break}
+    case "dup":{var el=target(n);if(!el)return;var cl=el.cloneNode(true);if(el.tagName==="DT"&&el.nextElementSibling&&el.nextElementSibling.tagName==="DD"){var dd=el.nextElementSibling;var cdd=dd.cloneNode(true);dd.after(cl);cl.after(cdd)}else el.after(cl);placeCaret(cl);break}
+    case "del":{var el2=selImg||target(n);if(!el2)return;
+      if(el2.tagName==="DT"&&el2.nextElementSibling&&el2.nextElementSibling.tagName==="DD")el2.nextElementSibling.remove();
+      var par=el2.parentNode;el2.remove();selImg=null;
+      if(par!==ed&&par&&!par.children.length&&!par.textContent.trim())par.remove();
+      break}
+  }
+  commit();
+}
+function target(n){if(!n)return null;return n.closest(".card")||n.closest("li")||n.closest("dt,dd")||topBlock(n)}
+
+/* Liens */
+var linkCtx=null;
+function openLink(n){
+  var s=edDoc.getSelection();linkCtx={a:n&&n.closest("a"),range:s.rangeCount?s.getRangeAt(0).cloneRange():null};
+  if(!linkCtx.a&&(!linkCtx.range||linkCtx.range.collapsed))return toast("Sélectionne d'abord le texte à transformer en lien");
+  var href=linkCtx.a?linkCtx.a.getAttribute("href"):"";
+  $("#lnPage").innerHTML='<option value="">— Aucune —</option><option value="{{discord}}">💬 Discord du serveur</option>'+site.pages.map(function(p){return '<option value="#'+esc(p.id)+'">'+esc(p.icon+" "+p.title)+'</option>'}).join("");
+  var isPage=href&&(href.charAt(0)==="#"||href==="{{discord}}");
+  $("#lnPage").value=isPage?href:"";$("#lnUrl").value=isPage?"":href;
+  $("#lnBlank").checked=linkCtx.a?linkCtx.a.target==="_blank":false;
+  $("#lnRemove").classList.toggle("hide",!linkCtx.a);
+  open("#mLink");
+}
+$("#lnPage").onchange=function(){if(this.value){$("#lnUrl").value="";$("#lnBlank").checked=this.value==="{{discord}}"}};
+$("#lnUrl").oninput=function(){if(this.value){$("#lnPage").value="";$("#lnBlank").checked=true}};
+$("#lnOk").onclick=function(){
+  var href=$("#lnPage").value||$("#lnUrl").value.trim();if(!href)return toast("Choisis une page ou écris une adresse","err");
+  if(!/^(#|https?:|mailto:|\/|\{\{)/.test(href))href="https://"+href;
+  var a=linkCtx.a;
+  if(!a){var r=linkCtx.range;a=edDoc.createElement("a");a.appendChild(r.extractContents());r.insertNode(a)}
+  a.setAttribute("href",href);
+  if($("#lnBlank").checked){a.target="_blank";a.rel="noopener"}else{a.removeAttribute("target");a.removeAttribute("rel")}
+  close("#mLink");commit()};
+$("#lnRemove").onclick=function(){var a=linkCtx.a;if(a){if(a.classList.contains("card")||a.classList.contains("btn")){toast("Pour une carte ou un bouton, utilise 🗑 pour le supprimer","err");return}
+  while(a.firstChild)a.parentNode.insertBefore(a.firstChild,a);a.remove()}close("#mLink");commit()};
+
+/* Mode code */
+function toggleCode(){
+  codeMode=!codeMode;$("#codeBtn").classList.toggle("on",codeMode);
+  $("#edFrame").classList.toggle("hide",codeMode);$("#edCode").classList.toggle("hide",!codeMode);
+  var p=find(cur);
+  if(codeMode){$("#edCode").value=p.html}else{p.html=$("#edCode").value;ed.innerHTML=p.html}
+}
+function syncCode(){if(codeMode&&cur){var p=find(cur);if(p)p.html=$("#edCode").value}}
+$("#edCode").oninput=function(){var p=find(cur);if(p){p.html=this.value;setDirty(true)}};
+
+/* ---------- Menu ---------- */
+function renderNav(){
+  var opts=site.pages.map(function(p){return '<option value="'+esc(p.id)+'">'+esc(p.icon+" "+p.title)+(inMenu(p.id)?"":" (hors menu)")+'</option>'}).join("");
+  $("#addNavPage").innerHTML=opts;
+  var html=site.nav.map(function(n,i){
+    var mv='<span class="h" draggable="true" title="Glisser">⠿</span><div class="mv"><button class="b sm" data-mv="-1" title="Monter">▲</button><button class="b sm" data-mv="1" title="Descendre">▼</button></div>';
+    var del='<button class="b sm danger" data-del title="Retirer du menu">✕</button>';
+    if(n.type==="sep")return '<div class="nitem sep" data-i="'+i+'">'+mv+'<span class="k">Séparateur</span><hr style="flex:1;border:0;border-top:1px solid var(--line)">'+del+'</div>';
+    if(n.type==="heading")return '<div class="nitem heading" data-i="'+i+'">'+mv+'<span class="k">Titre</span><input data-f="text" value="'+esc(n.text)+'">'+del+'</div>';
+    if(n.type==="link")return '<div class="nitem" data-i="'+i+'">'+mv+'<span class="k">Lien</span><input class="icon" data-f="icon" value="'+esc(n.icon)+'"><input data-f="label" value="'+esc(n.label)+'" placeholder="Texte"><input data-f="url" value="'+esc(n.url)+'" placeholder="https://… ou {{discord}}">'+del+'</div>';
+    var p=find(n.id);if(!p)return '<div class="nitem" data-i="'+i+'">'+mv+'<span class="k" style="color:var(--redl)">Page supprimée</span><span style="flex:1"></span>'+del+'</div>';
+    return '<div class="nitem" data-i="'+i+'">'+mv+'<span class="k">Page</span><input class="icon" data-pi="icon" value="'+esc(p.icon)+'" title="Icône de la page"><input data-f="label" value="'+esc(n.label||p.title)+'" placeholder="Texte dans le menu"><button class="b sm" data-open="'+esc(p.id)+'">✏️ Modifier</button>'+del+'</div>';
+  }).join("");
+  $("#navList").innerHTML=html||'<p class="d">Le menu est vide.</p>';
+  $$("#navList .nitem").forEach(function(el){
+    var i=+el.dataset.i,n=site.nav[i];
+    $$("[data-f]",el).forEach(function(inp){inp.oninput=function(){n[inp.dataset.f]=inp.value;setDirty(true)}});
+    $$("[data-pi]",el).forEach(function(inp){inp.oninput=function(){find(n.id).icon=inp.value;setDirty(true)}});
+    $$("[data-mv]",el).forEach(function(b){b.onclick=function(){var j=i+(+b.dataset.mv);if(j<0||j>=site.nav.length)return;site.nav.splice(j,0,site.nav.splice(i,1)[0]);setDirty(true);renderNav();renderPages()}});
+    $("[data-del]",el).onclick=function(){site.nav.splice(i,1);setDirty(true);renderNav();renderPages()};
+    var o=$("[data-open]",el);if(o)o.onclick=function(){goTab("pages");openPage(o.dataset.open)};
+    var h=$(".h",el);
+    h.ondragstart=function(e){e.dataTransfer.setData("text/plain",i);el.classList.add("drag")};
+    h.ondragend=function(){el.classList.remove("drag")};
+    el.ondragover=function(e){e.preventDefault()};
+    el.ondrop=function(e){e.preventDefault();var from=+e.dataTransfer.getData("text/plain");if(isNaN(from)||from===i)return;site.nav.splice(i,0,site.nav.splice(from,1)[0]);setDirty(true);renderNav();renderPages()};
+  });
+}
+$("#addNavPageBtn").onclick=function(){var id=$("#addNavPage").value;if(!id)return;var p=find(id);site.nav.push({type:"page",id:id,label:p.title});setDirty(true);renderNav();renderPages();toast("Ajoutée en bas du menu")};
+$$("[data-addnav]").forEach(function(b){b.onclick=function(){var t=b.dataset.addnav;
+  site.nav.push(t==="link"?{type:"link",icon:"🔗",label:"Nouveau lien",url:"https://"}:t==="heading"?{type:"heading",text:"Nouvelle section"}:{type:"sep"});
+  setDirty(true);renderNav();var last=$("#navList .nitem:last-child");last&&last.scrollIntoView({block:"center"})}});
+
+/* ---------- Réglages ---------- */
+function renderSettings(){
+  var st=site.settings;
+  $("#homeSel").innerHTML=site.pages.map(function(p){return '<option value="'+esc(p.id)+'">'+esc(p.icon+" "+p.title)+'</option>'}).join("");
+  $$("[data-s]").forEach(function(el){var k=el.dataset.s;if(el.type==="checkbox")el.checked=!!st[k];else el.value=st[k]==null?"":st[k];
+    el.oninput=el.onchange=function(){st[k]=el.type==="checkbox"?el.checked:el.value;setDirty(true);prevImgs();
+      if(k==="brand1"||k==="brand2")$("#hdrLogo").innerHTML=esc(st.brand1)+"<span>"+esc(st.brand2)+"</span>";
+      if(k==="customCss")refreshEditorStyle()}});
+  prevImgs();
+  var c=st.colors;
+  $("#colors").innerHTML=Object.keys(DEFAULT_COLORS).map(function(k){return '<div><input type="color" data-col="'+k+'" value="'+esc(c[k]||DEFAULT_COLORS[k])+'"><span>'+COLOR_NAMES[k]+'</span></div>'}).join("");
+  $$("[data-col]").forEach(function(inp){inp.oninput=function(){c[inp.dataset.col]=inp.value;setDirty(true);refreshEditorStyle()}});
+}
+function prevImgs(){$$("[data-prev]").forEach(function(i){var u=site.settings[i.dataset.prev];if(u)i.src=u;else i.removeAttribute("src")})}
+function refreshEditorStyle(){if(!edDoc)return;var s=edDoc.querySelector("style");s.textContent=s.textContent.replace(/^:root\{[^}]*\}/,":root{"+cssVars()+"}")}
+$("#resetColors").onclick=function(){site.settings.colors=Object.assign({},DEFAULT_COLORS);setDirty(true);renderSettings();refreshEditorStyle()};
+$$("[data-pick]").forEach(function(b){b.onclick=function(){pickImage(function(url){site.settings[b.dataset.pick]=url;setDirty(true);renderSettings()})}});
+
+/* ---------- Images ---------- */
+function imgCard(f,pick){return '<div class="im'+(pick?" pick":"")+'" data-url="'+esc(f.url)+'"><div class="th" style="background-image:url(\''+esc(f.url)+'\')"></div><div class="nm">'+esc(f.name)+' · '+Math.round(f.size/1024)+' Ko</div>'+
+  (pick?"":'<div class="ac"><button class="b sm" data-copy>Copier le lien</button><button class="b sm danger" data-rm>🗑</button></div>')+'</div>'}
+function loadImages(){api("GET","/uploads").then(function(list){
+  $("#imgs").innerHTML=list.map(function(f){return imgCard(f)}).join("")||'<p class="d">Aucune image pour l\'instant.</p>';
+  $$("#imgs .im").forEach(function(el){var u=el.dataset.url;
+    $("[data-copy]",el).onclick=function(){navigator.clipboard&&navigator.clipboard.writeText(u);toast("Lien copié : "+u)};
+    $("[data-rm]",el).onclick=function(){if(JSON.stringify(site).indexOf(u)>-1&&!confirm("Cette image est utilisée sur le site. La supprimer quand même ?"))return;
+      if(!confirm("Supprimer définitivement cette image ?"))return;
+      api("DELETE","/uploads/"+encodeURIComponent(u.split("/").pop())).then(loadImages)}});
+})}
+function upload(files){
+  files=[].slice.call(files).filter(function(f){return /^image\//.test(f.type)||/\.(svg|ico)$/i.test(f.name)});
+  if(!files.length)return Promise.resolve([]);
+  return Promise.all(files.map(function(f){
+    if(f.size>10*1024*1024){toast(f.name+" : trop lourd (10 Mo max)","err");return null}
+    return new Promise(function(res){var r=new FileReader();r.onload=function(){res(api("POST","/upload",{name:f.name,data:r.result}).catch(function(e){toast(e.message,"err");return null}))};r.readAsDataURL(f)});
+  })).then(function(r){r=r.filter(Boolean);if(r.length)toast(r.length+" image(s) ajoutée(s)","ok");return r});
+}
+var dz=$("#dz");
+dz.onclick=function(){$("#fileIn").click()};
+$("#fileIn").onchange=function(){var cb=this._cb;this._cb=null;upload(this.files).then(function(r){loadImages();if(cb&&r[0])cb(r[0].url)});this.value=""};
+dz.ondragover=function(e){e.preventDefault();dz.classList.add("over")};dz.ondragleave=function(){dz.classList.remove("over")};
+dz.ondrop=function(e){e.preventDefault();dz.classList.remove("over");upload(e.dataTransfer.files).then(loadImages)};
+
+var pickCb=null;
+function pickImage(cb){pickCb=cb;open("#mPick");api("GET","/uploads").then(function(list){
+  $("#pickImgs").innerHTML=list.map(function(f){return imgCard(f,true)}).join("")||'<p class="d">Aucune image. Clique sur « Ajouter une image ».</p>';
+  $$("#pickImgs .im").forEach(function(el){el.onclick=function(){close("#mPick");pickCb&&pickCb(el.dataset.url)}})})}
+$("#pickUp").onclick=function(){var fi=$("#fileIn");fi._cb=function(url){close("#mPick");pickCb&&pickCb(url)};fi.click()};
+
+/* ---------- Sauvegardes ---------- */
+function fmtBk(n){var m=/site-(\d{4})(\d\d)(\d\d)-(\d\d)(\d\d)(\d\d)/.exec(n);return m?m[3]+"/"+m[2]+"/"+m[1]+" à "+m[4]+"h"+m[5]+":"+m[6]:n}
+function loadBackups(){api("GET","/backups").then(function(list){
+  $("#bkList").innerHTML=list.map(function(b){return '<tr><td>🕘 '+fmtBk(b.name)+'</td><td style="color:var(--mut)">'+Math.round(b.size/1024)+' Ko</td><td style="text-align:right"><button class="b sm" data-rs="'+esc(b.name)+'">Restaurer</button></td></tr>'}).join("")||'<tr><td class="d">Aucune sauvegarde pour l\'instant (elles apparaissent après ton premier enregistrement).</td></tr>';
+  $$("[data-rs]").forEach(function(b){b.onclick=function(){if(!confirm("Revenir à la version du "+fmtBk(b.dataset.rs)+" ?\nLa version actuelle sera elle-même sauvegardée."))return;
+    api("POST","/backups/"+encodeURIComponent(b.dataset.rs)).then(function(){toast("Version restaurée","ok");cur=null;start();loadBackups()}).catch(function(e){toast(e.message,"err")})}})})}
+$("#exportBtn").onclick=function(){var a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(site,null,1)],{type:"application/json"}));a.download="wiki-contenu.json";a.click()};
+
+/* ---------- Sécurité ---------- */
+$("#pwBtn").onclick=function(){
+  if($("#pwNew").value!==$("#pwNew2").value)return toast("Les deux mots de passe ne correspondent pas","err");
+  api("POST","/password",{current:$("#pwCur").value,next:$("#pwNew").value}).then(function(){toast("Mot de passe changé","ok");$("#pwCur").value=$("#pwNew").value=$("#pwNew2").value="";$("#pwWarn").classList.add("hide")}).catch(function(e){toast(e.message,"err")})};
+$("#logout").onclick=function(){if(dirty&&!confirm("Tu as des modifications non enregistrées. Te déconnecter quand même ?"))return;api("POST","/logout").then(function(){dirty=false;location.reload()})};
+
+/* ---------- Enregistrer / aperçu ---------- */
+function save(){
+  syncCode();var b=$("#btnSave");b.disabled=true;
+  api("PUT","/site",site).then(function(r){if(r.editedAt)site.settings.editedAt=r.editedAt;setDirty(false);toast("✅ Enregistré ! Le site est à jour.","ok");renderSettingsIfOpen()})
+    .catch(function(e){toast(e.message,"err")}).then(function(){b.disabled=false});
+}
+function renderSettingsIfOpen(){if($("#tab-settings").classList.contains("on"))renderSettings()}
+$("#btnSave").onclick=save;
+$("#btnPreview").onclick=function(){syncCode();
+  var copy=JSON.parse(JSON.stringify(site));if(cur)copy.settings.homePage=cur;
+  api("POST","/preview",copy).then(function(html){$("#pvFrame").srcdoc=html;open("#mPreview")}).catch(function(e){toast(e.message,"err")})};
+$$("#mPreview [data-w]").forEach(function(b){b.onclick=function(){$("#pvFrame").style.width=b.dataset.w}});
+function open(s){$(s).classList.remove("hide")}
+function close(s){$(s).classList.add("hide")}
+$$(".modal").forEach(function(m){m.addEventListener("click",function(e){if(e.target===m||e.target.closest("[data-close]"))m.classList.add("hide")})});
+window.addEventListener("beforeunload",function(e){if(dirty){e.preventDefault();e.returnValue=""}});
+})();
+</script>
+</body>
+</html>
